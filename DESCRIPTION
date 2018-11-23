@@ -1,11 +1,16 @@
 Package: repana
 Type: Package
-Title: What the Package Does (Title Case)
+Title: Repeatible Analysis in R
 Version: 0.1.0
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
-License: What license is it under?
+Author: person("Aponte", "John", email = "apontej@who.int", role = c("aut","cre"))
+Description: Set of utilites to make easy the reproduction of analysis in R.
+ It allow to make_structure, clean_ouputs, and run and log programs in a
+ predefined order so secondary files, analysis and reports are constructed in
+ and ordered form
+License: file LICENSE
 Encoding: UTF-8
 LazyData: true
+RoxygenNote: 6.1.1
+Suggests:
+    spelling, testthat
+Language: en-GB
