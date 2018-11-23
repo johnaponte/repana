@@ -17,27 +17,26 @@
 #' should be reproduced by the automatic stream. Do not forget to include them
 #' in \code{.gitignore} if you use \code{git}
 #' @author John J. Aponte
-make_structure <- function(){
-   # Make the directories
-   lapply(c('data','database','handmade','logs','reports'), function(x){
-     if(! dir.exists(x))
-        dir.create(x))
-   })
-   NULL
+make_structure <- function() {
+  # Make the directories
+  lapply(c('data', 'database', 'handmade', 'logs', 'reports'), function(x) {
+    if (!dir.exists(x))
+      dir.create(x)
+  })
+  NULL
 }
 
 #' Clean the secondary files of the project
 #'
 #' Delete and make new \code{database}, \code{logs} and \code{reports} directory0
-clean_structure <- function(){
-  lapply(c('database','logs','reports'), function(x){
-    if( dir.exists(x)){
-        unlink(x,recursive = T)
-        dir.create(x))
+clean_structure <- function() {
+  lapply(c('database', 'logs', 'reports'), function(x) {
+    if (dir.exists(x)) {
+      unlink(x, recursive = T)
+      dir.create(x)
     }
   })
   NULL
 }
 
-}
 
