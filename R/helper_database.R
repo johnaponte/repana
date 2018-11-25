@@ -19,6 +19,8 @@
 #' @importFrom dplyr bind_rows
 #' @importFrom magrittr "%>%"
 write_log <- function(con, table){
+  oldfact <- options("stringsAsFactors")[[1]]
+  options(stringsAsFactors = FALSE)
   log <- data.frame(table_name = table, timestamp = as.character(lubridate::now()))
   if (dbExistsTable(con,"log")) {
     log <- dbReadTable(con,"log") %>%
@@ -26,6 +28,8 @@ write_log <- function(con, table){
       bind_rows(log)
   }
   dbWriteTable(con,"log",log, overwrite = TRUE)
+  options(stringsAsFactors = oldfact)
+  invisible(log)
 }
 
 
@@ -38,12 +42,23 @@ write_log <- function(con, table){
 #' @importFrom DBI dbWriteTable
 #' @importFrom DBI dbBegin
 #' @importFrom DBI dbCommit
+#' @export
 update_table <- function(con,table) {
   dbBegin(con)
-  db <- get(table)
-  dbWriteTable(con,table,db, overwrite = TRUE)
-  write_log(con,table)
-  dbCommit(con)
+  res <- try({
+    db <- base::get(table)
+    dbWriteTable(con,table,db, overwrite = TRUE)
+    write_log(con,table)
+    dbCommit(con)
+  }, silent = TRUE)
+  on.exit({
+    if (inherits(res, "try-error")) {
+        dbRollback(con)
+        stop(attributes(res)$condition$message)
+      }
+
+  })
+  invisible(table)
 }
 
 #' Drop all tables from a database
