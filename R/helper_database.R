@@ -18,18 +18,9 @@
 #' @importFrom dplyr filter
 #' @importFrom dplyr bind_rows
 #' @importFrom magrittr "%>%"
-write_log <- function(con, table){
-  oldfact <- options("stringsAsFactors")[[1]]
-  options(stringsAsFactors = FALSE)
-  log <- data.frame(table_name = table, timestamp = as.character(lubridate::now()))
-  if (dbExistsTable(con,"log")) {
-    log <- dbReadTable(con,"log") %>%
-      filter(table_name != table) %>%
-      bind_rows(log)
-  }
-  dbWriteTable(con,"log",log, overwrite = TRUE)
-  options(stringsAsFactors = oldfact)
-  invisible(log)
+log_table <- function(con, table){
+  log_table <- data.frame(table_name = table, timestamp = as.character(lubridate::now()), stringsAsFactors = FALSE)
+  dbWriteTable(con,"log_table",log_table, append = TRUE)
 }
 
 
@@ -48,7 +39,7 @@ update_table <- function(con,table) {
   res <- try({
     db <- base::get(table)
     dbWriteTable(con,table,db, overwrite = TRUE)
-    write_log(con,table)
+    log_table(con,table)
     dbCommit(con)
   }, silent = TRUE)
   on.exit({

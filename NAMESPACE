@@ -3,6 +3,7 @@
 export(clean_database)
 export(clean_structure)
 export(get_con)
+export(local_source)
 export(make_structure)
 export(update_table)
 import(DBI)
