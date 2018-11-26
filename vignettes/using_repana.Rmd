@@ -1,0 +1,131 @@
+---
+title: "Using repana"
+author: "John Aponte"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+## Introduction
+
+There are several utilities in the R ecosystem for repoductible research. The 
+package repana (for Reproducible Analysis) help in having a common directory 
+structure where to save the files that should be consider part of the main stream
+of production, and files that are products of the main stream as well as files 
+are modified and no longer part of the main stream but need to be kept.
+
+Also it help with the definition of datasources for odbc connection. This Vignette
+shows how to use this package.
+
+The aspiration of this package is that you can reproduce a complete analysis
+with the runining of one single masterfile
+
+## Directory Structure
+
+The function `make_structure()` creates the following sets of directors
+
+* __data__ to keep all datasources need to reproduce the analysis. 
+    
+* __database__ to keep all secondary datasets and objects
+    
+* __logs__ to keep the log of the scripts
+    
+* __reports__ to keep all secondary analysis reports and sheets
+    
+* __handmade__ to keep all modified files and reports that should be kept
+    
+    
+The information in `data` and `handmade` as well as the scripts in the root 
+directory should be preserved as they are the core of your analysis.
+The files in `logs`, `reports` and `database` are created and recreated with 
+the scripts. Those are the results of your analysis. The function `clean_structure()`
+clean those directories so a new analysis could be re-run without worries that new
+and old results are mixed. It is important to have only one entry point to 
+reproduce the analysis. This will be presented later with the creation of the
+masterfile.
+
+## The configuration of odbc 
+
+ODBC is used in this package as a way to keep data as well as results in a 
+database system. The ODBC source for results could be use by EXCEL files so
+you do not need to re-format or modify reports in EXCEL, just refresh data
+sources and your tables in EXCEL would reflect you latest analysis. 
+The location of the ODBC driver, users and passwords could be different from system to system,
+but because of having an unique name, the reproduction of the analysis in a different system
+would be matter only on change the configuration files. Here we save the configuration
+information in the `config.yml` file and read it with the `config` package.
+The definition should be under  `defaultdb`
+
+Example to use `SQLite` memory with a driver in Mac OS
+
+```
+default:
+ defaultdb:
+  driver: '/usr/local/lib/libsqlite3odbc.dylib'
+  database: ':memory:'
+```
+Example to use `SQLite` with a file
+
+```
+default:
+ defaultdb:
+  driver: '/usr/local/lib/libsqlite3odbc.dylib'
+  database: 'database/analysis.db'
+```
+
+Example to use `PostgreSQL`
+
+```
+default:
+ defaultdb:
+  driver: '/Library/ODBC/PostgreSQL/psqlodbcw.so'
+  server: localhost
+  uid: username
+  pwd: pasword
+  port: 5432
+  database: testdb
+```
+
+The configuration can be read with the `get_con()` function
+
+
+```
+con <- get_con()
+```
+
+You can define several configuration to use diferent databases in the same
+analysis, but the `defaultdb` will be used by the `db_local_source()` to save
+the log of scripts and tables and the connection will be accessible under the
+`p_con` object if the script is called with db_local_source().
+
+The function `update_table` will save a data.frame into the database, and will
+keep a log in the `log_table` table with the timestamp the file was updated
+in the database.
+
+```
+update_table(p_con,"iris")
+```
+
+
+
+
+
+
+
+
+
+
+
+## Using git
+
+## The masterfile
