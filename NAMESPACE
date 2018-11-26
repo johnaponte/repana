@@ -2,6 +2,7 @@
 
 export(clean_database)
 export(clean_structure)
+export(db_local_source)
 export(get_con)
 export(local_source)
 export(make_structure)

@@ -9,7 +9,7 @@ library(DBI)
 test_that("write_log works fine", {
   oldop <- options()
   test_con <- dbConnect(RSQLite::SQLite(),":memory:")
-  repana::log_table(test_con, "iris")
+  repana:::log_table(test_con, "iris")
   repana:::log_table(test_con, "mtcars")
   logs <- dbReadTable(test_con, "log_table")
   dbDisconnect(test_con)
