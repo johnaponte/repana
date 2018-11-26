@@ -4,6 +4,7 @@
 #- error = TRUE
 library(repana)
 
-stopifnot(exists("p_con", inherits = TRUE))
+# test_con is defined in the script that call this file
+stopifnot(exists("test_con", inherits = TRUE))
 stopifnot(exists("update_table", inherits = TRUE))
-update_table(p_con,"iris")
+update_table(test_con,"iris")

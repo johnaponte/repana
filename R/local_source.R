@@ -49,22 +49,27 @@ local_source <- function(p_script, p_log = "logs"){
 #' Run a script in its own independent environment and logs
 #' when it was runs, the time it takes and log the output
 #' The file have no access to variables described outside, or
-#' variables describe inside should not affect other programs,
-#' It log into the a database using a \code{\link[DBI]{DBIConnection-class}}
-#' object. The connection is available wihtin the script.
+#' variables describe inside should not affect other programs.
+#' It use the \code{get_con(p_database)} to get the connection
 #'
-#' @param p_con a \code{\link[DBI]{DBIConnection-class}} object
 #' @param p_script The script file
+#' @param p_con a \code{\link[DBI]{DBIConnection-class}} object
 #' @param p_log the logs directory for the output
+#' @param p_database the name for the connection
 #' @importFrom rmarkdown render
 #' @importFrom DBI dbWriteTable
+#' @seealso \code{\link{get_con}}
 #' @export
-db_local_source <- function(p_con, p_script, p_log = "logs") {
+db_local_source <- function(p_script, p_con, p_log = "logs", p_database = "defaultdb") {
   start_time = Sys.time()
+  should_disconnect = FALSE
+  if (missing(p_con)) {
+    p_con <- get_con(p_database)
+    should_disconnect = TRUE
+  }
   stopifnot(file.exists(p_script))
   cat(p_script, format(start_time))
   localenv <- new.env(parent = parent.frame())
-  assign("p_con", p_con, envir = localenv)
   fil <- tempfile()
   # In case of a disaster you can recover the file in the temporary directory
   cat("", basename(fil))
@@ -95,13 +100,16 @@ db_local_source <- function(p_con, p_script, p_log = "logs") {
     data.frame(
       script = p_script,
       start_time = format(start_time),
-      tmpfile = basename(fil),
-      duration = durtime,
+      tmpfile = as.character(basename(fil)),
+      duration = format(durtime),
       happy_end = happyend,
       stringsAsFactors = FALSE
     ),
     append = TRUE
   )
+  if (should_disconnect) {
+      dbDisconnect(p_con)
+      rm(p_con)
+  }
   cat("", durtime, happyend, "\n")
-
 }
