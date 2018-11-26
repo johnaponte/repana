@@ -13,5 +13,5 @@ LazyData: true
 RoxygenNote: 6.1.1
 Suggests:
     spelling, testthat, RSQLite, odbc
-Imports: DBI, config, dplyr, magrittr, lubridate 
+Imports: DBI, config, dplyr, magrittr, lubridate, rmarkdown
 Language: en-GB

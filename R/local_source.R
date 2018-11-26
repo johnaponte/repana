@@ -12,25 +12,17 @@
 #'
 #' @param p_script The script file
 #' @param p_con a \code{\link[DBI]{DBIConnection-class}}
-#' @param log if TRUE the log is kept
-#' @param logdir the path to keep the log
+#' @param p_log the logs directory for the output
+#' @importFrom rmarkdown render
 #' @export
-local_source <- function(p_script, p_con, log = TRUE, logdir = "logs" ){
+local_source <- function(p_script, p_con, p_log = "logs"){
   start_time = Sys.time()
   stopifnot(file.exists(p_script))
-  logfile = file(file.path(logdir,paste0(p_script,".log")), open = "wt")
   happyend = FALSE
   localenv <- new.env(parent = baseenv())
   assign("p_con", p_con,envir =  localenv)
-  cat(p_script, "\n", file = logfile, append = FALSE )
-  cat(format(Sys.time()),"\n", file = logfile, append = TRUE)
-  cat(rep("#",60),"\n",sep = "", file = logfile, append = TRUE)
-  sink(logfile, append = TRUE, split = TRUE)
-  sink(logfile, type = "message")
   on.exit({
-    cat("\n",rep("#",60),"\n",sep = "")
     durtime <- difftime(Sys.time(), start_time, units = "min")
-    cat(durtime,"min\n")
     if (happyend) {
       cat("### HAPPY END :-)\n")
     }
@@ -43,12 +35,8 @@ local_source <- function(p_script, p_con, log = TRUE, logdir = "logs" ){
                             happyend = ifelse(happyend, ":-)",":-O"),
                             stringsAsFactors = FALSE)
     dbWriteTable(p_con, "log_script", log_script, append = TRUE)
-    sink()
-    sink(type = "message")
-    rm(localenv)
-    gc()
   })
-  source(p_script, local = localenv, echo = TRUE , keep.source = TRUE, max.deparse.length = 5000)
+  render(p_script, output_dir = p_log, envir = localenv, quiet = TRUE)
   happyend = TRUE
 }
 

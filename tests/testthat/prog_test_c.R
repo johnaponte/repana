@@ -4,3 +4,4 @@
 
 # This program conclude with an error
 stop("prog_test_c makes and error")
+

@@ -4,16 +4,14 @@
 \alias{local_source}
 \title{Run a script}
 \usage{
-local_source(p_script, p_con, log = TRUE, logdir = "logs")
+local_source(p_script, p_con, p_log = "logs")
 }
 \arguments{
 \item{p_script}{The script file}
 
 \item{p_con}{a \code{\link[DBI]{DBIConnection-class}}}
 
-\item{log}{if TRUE the log is kept}
-
-\item{logdir}{the path to keep the log}
+\item{p_log}{the logs directory for the output}
 }
 \description{
 Run a script in its own independent environment and logs
