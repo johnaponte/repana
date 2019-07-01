@@ -2,16 +2,17 @@
 % Please edit documentation in R/helper_database.R
 \name{update_table}
 \alias{update_table}
-\title{Writes a \code{data.frame} in the database}
+\title{Helper function to write a table and update the log}
 \usage{
-update_table(con, table)
+update_table(con, table, source)
 }
 \arguments{
-\item{con}{\code{\link[DBI]{DBIConnection-class}} object}
+\item{con}{DBI connection}
 
 \item{table}{Name of the table}
+
+\item{source}{a manual comment to identify the source of the table}
 }
 \description{
-Write or replace a \code{data.frame} in the database
-and update the log
+Helper function to write a table and update the log
 }

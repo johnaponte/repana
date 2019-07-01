@@ -16,6 +16,6 @@ Suggests:
     testthat,
     RSQLite,
     knitr
-Imports: DBI, odbc, config, dplyr, magrittr, lubridate, rmarkdown
+Imports: DBI, odbc, config, dplyr, magrittr, lubridate, rmarkdown, processx, readr
 Language: en-GB
 VignetteBuilder: knitr

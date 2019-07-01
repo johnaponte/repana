@@ -2,16 +2,13 @@
 % Please edit documentation in R/helper_database.R
 \name{clean_database}
 \alias{clean_database}
-\title{Drop all tables from a database}
+\title{Helper function to drop all tables from a database}
 \usage{
 clean_database(con)
 }
 \arguments{
-\item{con}{\code{\link[DBI]{DBIConnection-class}} object}
+\item{con}{DBI connection}
 }
 \description{
-Drop all tables from a database
-}
-\author{
-John J. Aponte
+Helper function to drop all tables from a database
 }

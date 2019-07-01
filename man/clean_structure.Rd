@@ -7,7 +7,7 @@
 clean_structure()
 }
 \description{
-Delete and make new \code{database}, \code{logs} and \code{reports} directory0
+Delete and make new \code{database}, \code{logs} and \code{reports} directory
 }
 \author{
 John J. Aponte

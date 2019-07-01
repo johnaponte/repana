@@ -1,63 +1,53 @@
 # Utilities for the database
 # 20181123 by JJAV
-# # # # # # # # # # # # # # #
+# 20190701 updated after some months of infomal testing
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
-#' Write in the log table the inclusion of a table in the database
+##' Make a log of the updates on the database
 #'
-#' Make a new entry in the log of the database updates.
-#' If the log table does not exists it creates it
-#' Make a new entry with the timestamp of the update.
-#' In the log you will have a record of when the table was updated for the last
-#' time. It intended to be used with \code{\link{update_table}}
-#' @param con \code{\link[DBI]{DBIConnection-class}} object
+#' Make a log of the database updates. If the log table does not exists it creates it
+#' Make a new entry with the timestamp of the update
+#' @param con DBI connection
 #' @param table the name of the table
-#' @author John J. Aponte
-#' @importFrom  DBI dbReadTable
-#' @importFrom DBI dbWriteTable
-#' @importFrom lubridate now
-#' @importFrom dplyr filter
+#' @param source a manual comment to identify the source of the table
+#' @import DBI
+#' @importFrom  dplyr filter
 #' @importFrom dplyr bind_rows
-#' @importFrom magrittr "%>%"
-log_table <- function(con, table){
-  log_table <- data.frame(table_name = table, timestamp = as.character(lubridate::now()), stringsAsFactors = FALSE)
-  dbWriteTable(con,"log_table",log_table, append = TRUE)
+#' @importFrom  lubridate now
+write_log <- function(con, tablename, source){
+  log <- data.frame(table_name = tablename, timestamp = as.character(lubridate::now()), source = source)
+  if (dbExistsTable(con,"log")) {
+    log <- dbReadTable(con,"log") %>%
+      dplyr::filter(table_name != tablename) %>%
+      dplyr::bind_rows(log)
+  }
+  dbWriteTable(con,"log",log, overwrite = TRUE)
 }
 
-
-#' Writes a \code{data.frame} in the database
-#'
-#' Write or replace a \code{data.frame} in the database
-#' and update the log
-#' @param con \code{\link[DBI]{DBIConnection-class}} object
+#' Helper function to write a table and update the log
+#' @param con DBI connection
 #' @param table Name of the table
-#' @importFrom DBI dbWriteTable
-#' @importFrom DBI dbBegin
-#' @importFrom DBI dbCommit
-#' @export
-update_table <- function(con,table) {
+#' @param source a manual comment to identify the source of the table
+#' @import DBI
+update_table <- function(con, table, source) {
+  tablename <- as.character(substitute(table))
+  cat(tablename,"\n")
   dbBegin(con)
-  res <- try({
-    db <- base::get(table)
-    dbWriteTable(con,table,db, overwrite = TRUE)
-    log_table(con,table)
-    dbCommit(con)
-  }, silent = TRUE)
-  on.exit({
-    if (inherits(res, "try-error")) {
-        dbRollback(con)
-        stop(attributes(res)$condition$message)
-      }
-
+  rexpr <- try({
+    dbWriteTable(con, tablename, as.data.frame(table), overwrite = TRUE)
+    write_log(con, tablename, source)
   })
-  invisible(table)
+  if (inherits(rexpr, "try-error")) {
+    dbRollback(con)
+  }
+  else{
+    dbCommit(con)
+  }
 }
 
-#' Drop all tables from a database
-#' @param con \code{\link[DBI]{DBIConnection-class}} object
-#' @author John J. Aponte
-#' @importFrom  DBI dbListTables
-#' @importFrom  DBI dbRemoveTable
-#' @export
+#' Helper function to drop all tables from a database
+#' @param con DBI connection
+#' @import DBI
 clean_database <- function(con) {
   invisible(
     lapply(dbListTables(con),function(x){
@@ -65,3 +55,4 @@ clean_database <- function(con) {
       dbRemoveTable(con,x)})
   )
 }
+

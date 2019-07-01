@@ -1,6 +1,0 @@
-default:
- defaultdb:
-  driver: '/usr/local/lib/libsqlite3odbc.dylib'
-  database: "borrar.db"
-
-
