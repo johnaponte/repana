@@ -7,6 +7,14 @@ context("Test get_con")
 # This test will fail on other machines and the location of the driver is
 # depends on the instalation and no guarantee it is located in the same place
 test_that("get_con works fine" , {
+  curdir  = getwd()
+  cat("\nCurrent directory: ", curdir,"\n")
+  tmpfile <- tempfile()
+  dir.create(tmpfile)
+  setwd(tmpfile)
+
+  make_structure()
+
   if (TRUE) {
     test_con <- get_con()
   }
@@ -21,6 +29,9 @@ test_that("get_con works fine" , {
   expect_equal(xiris, iris2)
   dbDisconnect(test_con)
   rm(test_con)
-  if (file.exists("borrar.db"))
-    unlink("borrar.db")
+
+  # clean the messs
+  setwd(curdir)
+  unlink(tmpfile, recursive = T, force = T)
+
 })

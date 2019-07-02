@@ -13,7 +13,8 @@
 #' @import DBI
 #' @importFrom  dplyr filter
 #' @importFrom dplyr bind_rows
-#' @importFrom  lubridate now
+#' @importFrom lubridate now
+#' @importFrom magrittr %>%
 write_log <- function(con, tablename, source){
   log <- data.frame(table_name = tablename, timestamp = as.character(lubridate::now()), source = source, stringsAsFactors = F)
   if (dbExistsTable(con,"log")) {
@@ -40,7 +41,7 @@ update_table <- function(con, table, source) {
   })
   if (inherits(rexpr, "try-error")) {
     dbRollback(con)
-    stop(xx)
+    stop(rexpr)
   }
   else{
     dbCommit(con)

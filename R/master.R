@@ -10,20 +10,23 @@
 #'
 #' The program add (or create if not exists) the files run, time of execution
 #' and exit status in the file master.log of the directory logs.
-#'
+
 #' @param pattern Regular expression to select the files to run
-#' @param start Index of the program to start.
+#' @param start index of the program to start
 #' @param logdir directory to keep the logs of the files. By default
+#' @param rscript_path path to the \code{Rscript} file
 #' the entry on the config.yml dirs:logs
 #' @import processx
 #' @import readr
 #' @import config
+#' @importFrom utils write.table
 #' @export
 #' @return a data.frame with the files run, running time and exit status
 master <-
   function(pattern = "^[0-9][0-9].*\\.R$",
            start = 1,
-           logdir = config::get("dirs")$logs) {
+           logdir = config::get("dirs")$logs,
+           rscript_path = "/usr/local/bin/Rscript") {
     scriptlist = dir(".", pattern = pattern, full.names = T)
     reslogs <-
       lapply(scriptlist[start:length(scriptlist)], function(x) {
@@ -31,7 +34,7 @@ master <-
         cat(rep("=", 80), "\n")
         start = Sys.time()
         res <-
-          try(processx::run("Rscript",
+          try(processx::run(rscript_path,
                             c(x, "--vainilla"),
                             echo = T,
                             error_on_status = FALSE))

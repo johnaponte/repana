@@ -5,7 +5,7 @@
 #' predefined order to allow secondary files, analysis and reports be constructed in
 #' and ordered form.
 #' @docType package
-#' @name wmrdistr
+#' @name repana
 NULL
 
 utils::globalVariables(

@@ -5,14 +5,17 @@
 \title{Runs the programs}
 \usage{
 master(pattern = "^[0-9][0-9].*\\\\.R$", start = 1,
-  logdir = config::get("dirs")$logs)
+  logdir = config::get("dirs")$logs,
+  rscript_path = "/usr/local/bin/Rscript")
 }
 \arguments{
 \item{pattern}{Regular expression to select the files to run}
 
-\item{start}{Index of the program to start.}
+\item{start}{index of the program to start}
 
-\item{logdir}{directory to keep the logs of the files. By default
+\item{logdir}{directory to keep the logs of the files. By default}
+
+\item{rscript_path}{path to the \code{Rscript} file
 the entry on the config.yml dirs:logs}
 }
 \value{
