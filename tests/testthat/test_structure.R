@@ -2,9 +2,9 @@
 # 20181123 by JJAV
 # # # # # # # # # #
 
-context("Test structures")
+context("Test make_structure")
 
-test_that("make_structure works fine", {
+test_that("make_structure create directories", {
   curdr  = getwd()
   tmpfile <- tempfile()
   dir.create(tmpfile)
@@ -45,4 +45,21 @@ test_that("make_structure works fine", {
   # clean the messs
   setwd(curdr)
   unlink(tmpfile, recursive = T, force = T)
+})
+
+
+test_that("handle .gitignore ok", {
+  curdr  = getwd()
+  tmpfile <- tempfile()
+  dir.create(tmpfile)
+  setwd(tmpfile)
+
+  expect_false(file.exists(".gitignore"))
+  make_structure()
+  expect_true(file.exists(".gitignore"))
+  xx <- readLines(".gitignore")
+  # a second call to make_structure will not change .gitignore
+  make_structure
+  yy <- readLines(".gitignore")
+  expect_equal(xx, yy)
 })
