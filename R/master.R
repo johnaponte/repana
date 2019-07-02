@@ -24,30 +24,36 @@ master <-
   function(pattern = "^[0-9][0-9].*\\.R$",
            start = 1,
            logdir = config::get("dirs")$logs) {
+    scriptlist = dir(".", pattern = pattern, full.names = T)
     reslogs <-
       lapply(scriptlist[start:length(scriptlist)], function(x) {
         cat(x, "\n")
         cat(rep("=", 80), "\n")
         start = Sys.time()
         res <-
-          try(processx::run("Rscript", c(x, "--vainilla"), echo = T))
+          try(processx::run("Rscript",
+                            c(x, "--vainilla"),
+                            echo = T,
+                            error_on_status = FALSE))
         end <- Sys.time()
         elapsed = difftime(end, start)
         if (!inherits(res, "try-error")) {
           fname =  file.path("logs", paste0(x, ".log"))
 
-          cat(x, "\n", file = fname)
+          cat(x, "\n\n", file = fname)
           cat(format(start), "\n", file = fname, append = T)
           cat(rep("=", 80), "\n", file = fname, append = T)
           readr::write_lines(res$stdout, fname, append = T)
           cat(rep("=", 80), "\n", file = fname, append = T)
-          cat("Errors and Warnings messages\n\n",
-              file = fname,
-              append = T)
-          readr::write_lines(gsub("\033\\[[0-9]{1,2}m", "", res$stderr),
-                             fname,
-                             append = T)
-          cat(rep("=", 80), "\n", file = fname, append = T)
+          if (res$stderr != "") {
+            cat("Errors and Warnings messages:\n\n",
+                file = fname,
+                append = T)
+            readr::write_lines(gsub("\033\\[[0-9]{1,2}m", "", res$stderr),
+                               fname,
+                               append = T)
+            cat(rep("=", 80), "\n", file = fname, append = T)
+          }
           cat(
             "Status: ",
             res$status,
@@ -65,18 +71,22 @@ master <-
           timestart = format(start),
           script = x,
           elapsed = format(elapsed),
-          comments = ifelse(inherits(res, "try-error"), "FAIL", " :-)")
+          comments = ifelse(inherits(res, "try-error") |
+                              res$status != 0, "FAIL", ":-)")
         )
       })
 
     dfres <- do.call(rbind, reslogs)
-    write.table(
-      dfres,
-      "logs/master.log",
-      row.names = F,
-      append = T,
-      col.names = !file.exists("logs/master.log"),
-      sep = "\t"
+    # Suppress a warning when append the column names
+    suppressWarnings(
+      write.table(
+        dfres,
+        "logs/master.log",
+        row.names = F,
+        append = T,
+        col.names = !file.exists("logs/master.log"),
+        sep = "\t"
+      )
     )
     dfres
   }
