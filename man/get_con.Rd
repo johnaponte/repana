@@ -4,14 +4,12 @@
 \alias{get_con}
 \title{Get conection from configuration file}
 \usage{
-get_con(configname = "defaultdb", file = "config.yml", p_con)
+get_con(configname = "defaultdb", file = "config.yml")
 }
 \arguments{
 \item{configname}{a string with the name of the value}
 
 \item{file}{name of the configuration to read from.}
-
-\item{p_con}{a \code{\link[DBI]{DBIConnection-class}} object.}
 }
 \value{
 a \code{DBI} connnection
@@ -20,7 +18,6 @@ a \code{DBI} connnection
 The project use odbc to get connection to the database. To keep the
 details of the connection we use the config.yml read by the
 \code{\link[config]{get}} function.  See the vignette for details.
-If a \code{p_con} object is specified, the connection is passed through
 }
 \author{
 John J. Aponte
