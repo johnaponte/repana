@@ -9,9 +9,9 @@ write_log(con, tablename, source)
 \arguments{
 \item{con}{DBI connection}
 
-\item{source}{a manual comment to identify the source of the table}
+\item{tablename}{the name of the table}
 
-\item{table}{the name of the table}
+\item{source}{a manual comment to identify the source of the table}
 }
 \description{
 Make a log of the database updates. If the log table does not exists it creates it

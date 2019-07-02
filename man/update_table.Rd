@@ -2,17 +2,17 @@
 % Please edit documentation in R/helper_database.R
 \name{update_table}
 \alias{update_table}
-\title{Helper function to write a table and update the log}
+\title{Helper function to include a data.frame in the database and update the log}
 \usage{
 update_table(con, table, source)
 }
 \arguments{
 \item{con}{DBI connection}
 
-\item{table}{Name of the table}
+\item{table}{the data.frame to be included in the database}
 
 \item{source}{a manual comment to identify the source of the table}
 }
 \description{
-Helper function to write a table and update the log
+Helper function to include a data.frame in the database and update the log
 }
