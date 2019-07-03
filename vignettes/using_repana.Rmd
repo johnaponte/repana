@@ -178,5 +178,5 @@ default:
 
 You may download the package from github. Within R you may use `devtools::install_github()` as:
 
-` devtools::install_github("johnaponte/repana")`
+`devtools::install_github("johnaponte/repana", build_manual = T, build_vignettes = T)`
 
