@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_con.R
 \name{get_con}
 \alias{get_con}
-\title{Get conection from configuration file}
+\title{Get connection from configuration file}
 \usage{
 get_con(configname = "defaultdb", file = "config.yml")
 }
@@ -12,11 +12,11 @@ get_con(configname = "defaultdb", file = "config.yml")
 \item{file}{name of the configuration to read from.}
 }
 \value{
-a \code{DBI} connnection
+a \code{DBI} connection
 }
 \description{
-The project use odbc to get connection to the database. To keep the
-details of the connection we use the config.yml read by the
+The project use ODBC to get connection to a database. To keep the
+parameters of the connection we use the \code{config.yml} read by the
 \code{\link[config]{get}} function.  See the vignette for details.
 }
 \author{

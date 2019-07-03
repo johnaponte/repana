@@ -103,7 +103,7 @@ make_structure <- function() {
     if (!dir.exists(x))
       dir.create(x)
   })
-  NULL
+  dir()
 }
 
 #' Clean the secondary files of the project
@@ -118,5 +118,5 @@ clean_structure <- function() {
       dir.create(x)
     }
   })
-  NULL
+  dir()
 }

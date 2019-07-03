@@ -16,7 +16,7 @@ master(pattern = "^[0-9][0-9].*\\\\.R$", start = 1,
 \item{logdir}{directory to keep the logs of the files. By default}
 
 \item{rscript_path}{path to the \code{Rscript} file
-the entry on the config.yml dirs:logs}
+the entry on the \code{config.yml} \code{dirs:logs}}
 }
 \value{
 a data.frame with the files run, running time and exit status
@@ -24,7 +24,8 @@ a data.frame with the files run, running time and exit status
 \description{
 Run the programs specified by the pattern, in the order as the
 pattern select the files. Keep a log of the results. By default
-the pattern number_number_anytext.R is selected. They are run in order
+the pattern starting with two numbers and ending with .R is selected.
+They are run in order
 }
 \details{
 The program add (or create if not exists) the files run, time of execution
