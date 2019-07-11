@@ -64,7 +64,7 @@ the values for `data`, `functions`, `database`, `reports`, `logs`, `handmade`
 directories. If you prefer other options than the defaults values you may change
 it.
 
-__gitinore__ to define the set of directories that should be cleaned every time you want to repeat
+__gitignore__ to define the set of directories that should be cleaned every time you want to repeat
 the analysis from zero. This directories are included in the `.gitignore`
 
 __defaultdb__ is written with the parameters for a `SQLite ODBC` driver, It make a guess according

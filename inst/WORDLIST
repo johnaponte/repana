@@ -4,3 +4,7 @@ ODBC
 OSx
 SQLite
 yml
+config
+defaultdb
+github
+gitignore
