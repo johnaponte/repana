@@ -4,7 +4,7 @@
 \alias{master}
 \title{Runs the programs}
 \usage{
-master(pattern = "^[0-9][0-9].*\\\\.R$", start = 1,
+master(pattern = "^[0-9][0-9].*\\\\.R$", start = 1, stop = Inf,
   logdir = config::get("dirs")$logs,
   rscript_path = "/usr/local/bin/Rscript")
 }
@@ -12,6 +12,8 @@ master(pattern = "^[0-9][0-9].*\\\\.R$", start = 1,
 \item{pattern}{Regular expression to select the files to run}
 
 \item{start}{index of the program to start}
+
+\item{stop}{index of the program to stop}
 
 \item{logdir}{directory to keep the logs of the files. By default}
 

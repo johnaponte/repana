@@ -29,7 +29,7 @@ print(dfres)
 
 })
 
-test_that("Master respects the arguments", {
+test_that("Master respects the start & stop arguments", {
   curdir  = getwd()
   cat("\nCurrent directory: ", curdir,"\n")
   tmpfile <- tempfile()
@@ -39,11 +39,11 @@ test_that("Master respects the arguments", {
   make_structure()
   expect_true(file.exists(file.path(curdir,"01_prog_test_a.R")))
   file.copy(from = dir(curdir, pattern = "^[0-9][0-9].*\\.R$", full.names = T), to = tmpfile)
-  capture.output(master(start = 4))
+  capture.output(master(start = 2, stop = 3))
   expect_false(file.exists("logs/01_prog_test_a.R.log"))
-  expect_false(file.exists("logs/02_prog_test_b.R.log"))
-  expect_false(file.exists("logs/03_prog_test_c.R.log"))
-  expect_true(file.exists("logs/04_prog_test_d.R.log"))
+  expect_true(file.exists("logs/02_prog_test_b.R.log"))
+  expect_true(file.exists("logs/03_prog_test_c.R.log"))
+  expect_false(file.exists("logs/04_prog_test_d.R.log"))
   expect_true(file.exists("logs/master.log"))
 })
 

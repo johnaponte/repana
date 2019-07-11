@@ -14,6 +14,7 @@
 
 #' @param pattern Regular expression to select the files to run
 #' @param start index of the program to start
+#' @param stop index of the program to stop
 #' @param logdir directory to keep the logs of the files. By default
 #' @param rscript_path path to the \code{Rscript} file
 #' the entry on the \code{config.yml} \code{dirs:logs}
@@ -26,11 +27,13 @@
 master <-
   function(pattern = "^[0-9][0-9].*\\.R$",
            start = 1,
+           stop = Inf,
            logdir = config::get("dirs")$logs,
            rscript_path = "/usr/local/bin/Rscript") {
     scriptlist = dir(".", pattern = pattern, full.names = T)
+    tostop = min(length(scriptlist), stop)
     reslogs <-
-      lapply(scriptlist[start:length(scriptlist)], function(x) {
+      lapply(scriptlist[start:tostop], function(x) {
         cat(x, "\n")
         cat(rep("=", 80), "\n")
         start = Sys.time()
