@@ -30,6 +30,20 @@ master <-
            stop = Inf,
            logdir = config::get("dirs")$logs,
            rscript_path = "/usr/local/bin/Rscript") {
+    if (missing(rscript_path)) {
+      if (file.exists("/usr/local/bin/Rscript"))
+        rscript_path = "/usr/local/bin/Rscript"
+      else {
+        if (file.exists("/usr/bin/Rscript")) {
+          rscript_path = "/usr/bin/Rscript"
+        }
+        else {
+          rscript_path = "Rscript"
+        }
+
+      }
+    }
+    stopifnot(file.exists(rscript_path))
     scriptlist = dir(".", pattern = pattern, full.names = T)
     tostop = min(length(scriptlist), stop)
     reslogs <-
