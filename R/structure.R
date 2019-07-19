@@ -76,6 +76,8 @@ make_structure <- function() {
   # Process the .gitignore file
   if (file.exists(".gitignore")) {
     xx <- readLines(".gitignore")
+    if (!any(grepl(paste0("^config.yml$"), xx)))
+      cat("config.yml","\n", file = ".gitignore", append = T)
     if (!any(grepl(paste0("^",config::get("dirs")$database,"$"), xx)))
       cat(config::get("dirs")$database,"\n", file = ".gitignore", append = T)
     if (!any(grepl(paste0("^",config::get("dirs")$reports,"$"), xx)))
@@ -87,6 +89,7 @@ make_structure <- function() {
   }
   else {
     cat("# Modified by make_structure\n", file = ".gitignore")
+    cat("config.yml","\n", file = ".gitignore", append = T)
     cat(config::get("dirs")$database,"\n", file = ".gitignore", append = T )
     cat(config::get("dirs")$reports,"\n", file = ".gitignore", append = T)
     cat(config::get("dirs")$logs,"\n", file = ".gitignore", append = T)
