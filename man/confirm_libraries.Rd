@@ -16,3 +16,6 @@ and check if the library is installed.
 \examples{
 confirm_libraries()
 }
+\author{
+John J. Aponte
+}

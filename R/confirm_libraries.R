@@ -13,9 +13,10 @@
 #' @importFrom dplyr select
 #' @importFrom dplyr filter
 #' @importFrom utils installed.packages
-#' @export
+#' @author John J. Aponte
 #' @examples
 #' confirm_libraries()
+#' @export
 confirm_libraries <- function() {
   rfiles <-
     dir("." ,
