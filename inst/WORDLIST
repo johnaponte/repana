@@ -8,3 +8,7 @@ config
 defaultdb
 github
 gitignore
+Rscript
+Rmd
+md
+

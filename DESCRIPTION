@@ -1,7 +1,7 @@
 Package: repana
 Type: Package
 Title: Repeatable Analysis in R
-Version: 1.3
+Version: 1.4
 Authors@R: person("Aponte", "John", email = "apontej@who.int", role = c("aut","cre"))
 Description: Set of utilities to make easy the reproduction of analysis in R.
  It allow to make_structure, clean_structure, and run and log programs in a
@@ -16,6 +16,6 @@ Suggests:
     testthat,
     RSQLite,
     knitr
-Imports: DBI, odbc, config, dplyr, magrittr, lubridate, rmarkdown, processx, readr
+Imports: DBI, odbc, config, plyr, dplyr, magrittr, lubridate, rmarkdown, processx, readr
 Language: en-GB
 VignetteBuilder: knitr

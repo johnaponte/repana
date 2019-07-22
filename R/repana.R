@@ -10,6 +10,9 @@ NULL
 
 utils::globalVariables(
   c(
-    "table_name"
+    "table_name",
+    "installed",
+    "libraries",
+    "."
   )
 )

@@ -14,3 +14,6 @@
 
   - Include config.yml in .gitignore
   - Change the NEWS to NEWS.md
+
+*Version 1.4*
+  - New function confirm_libraries()
