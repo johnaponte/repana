@@ -13,6 +13,7 @@
 *Version 1.3*
 
   - Include config.yml in .gitignore
+
   - Change the NEWS to NEWS.md
 
 *Version 1.4*
@@ -23,4 +24,6 @@
 
   - gitignore is now processed based on the names of gitignore entry of
   the config.yml. Previously was a fixed set of directories
+  
+  - make_structure create directories and subdirectories 
   

@@ -95,7 +95,7 @@ make_structure <- function() {
     config::get("dirs")
   ), function(x) {
     if (!dir.exists(x))
-      dir.create(x)
+      dir.create(x, recursive = TRUE)
   })
   dir()
 }
