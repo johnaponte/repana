@@ -8,7 +8,7 @@
 
 *Version 1.2*
 
-  - Improve seeking of RScript package. Works for Linux and OS
+  - Improve seeking of Rscript package. Works for Linux and OS
   
 *Version 1.3*
 
@@ -16,4 +16,11 @@
   - Change the NEWS to NEWS.md
 
 *Version 1.4*
+
   - New function confirm_libraries()
+  
+*Version 1.5*
+
+  - gitignore is now processed based on the names of gitignore entry of
+  the config.yml. Previously was a fixed set of directories
+  

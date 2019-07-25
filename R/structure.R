@@ -74,30 +74,21 @@ make_structure <- function() {
   }
 
   # Process the .gitignore file
-  if (file.exists(".gitignore")) {
-    xx <- readLines(".gitignore")
-    if (!any(grepl(paste0("^config.yml$"), xx)))
-      cat("config.yml","\n", file = ".gitignore", append = T)
-    if (!any(grepl(paste0("^",config::get("dirs")$database,"$"), xx)))
-      cat(config::get("dirs")$database,"\n", file = ".gitignore", append = T)
-    if (!any(grepl(paste0("^",config::get("dirs")$reports,"$"), xx)))
-      cat(config::get("dirs")$reports,"\n", file = ".gitignore", append = T)
-    if (!any(grepl(paste0("^",config::get("dirs")$logs,"$"), xx)))
-      cat(config::get("dirs")$logs,"\n", file = ".gitignore", append = T)
-    if (get_os() == "osx" & !any(grep("^\\.DS_Store$", xx)))
-      cat(".DS_Store\n", file = ".gitignore", append = T)
+  if (!file.exists(".gitignore")) {
+    cat("# Created by make_structure\n", file = ".gitignore")
   }
-  else {
-    cat("# Modified by make_structure\n", file = ".gitignore")
-    cat("config.yml","\n", file = ".gitignore", append = T)
-    cat(config::get("dirs")$database,"\n", file = ".gitignore", append = T )
-    cat(config::get("dirs")$reports,"\n", file = ".gitignore", append = T)
-    cat(config::get("dirs")$logs,"\n", file = ".gitignore", append = T)
-    cat("config.yml","\n", file = ".gitignore", append = T)
-    if (get_os() == "osx")
-      cat(".DS_Store\n", file = ".gitignore", append = T)
-  }
-
+  xx <- readLines(".gitignore")
+  if (get_os() == "osx" & !any(grep("^\\.DS_Store$", xx)))
+    cat(".DS_Store\n", file = ".gitignore", append = T)
+  if (!any(grepl(paste0("^config.yml$"), xx)))
+    cat("config.yml", "\n", file = ".gitignore", append = T)
+  in_gitignore <- config::get("gitignore")
+  lapply(in_gitignore, function(x) {
+    tdir <- config::get("dirs")[[x]]
+    if (!any(grepl(paste0("^", tdir, "$"), xx))) {
+      cat(tdir, "\n", file = ".gitignore", append = T)
+    }
+  })
 
   # Make the directories
   lapply(c(
