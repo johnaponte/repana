@@ -77,14 +77,18 @@ make_structure <- function() {
   if (!file.exists(".gitignore")) {
     cat("# Created by make_structure\n", file = ".gitignore")
   }
-  xx <- readLines(".gitignore")
+  xx <- trimws(readLines(".gitignore"), "both")
   if (get_os() == "osx" & !any(grep("^\\.DS_Store$", xx)))
     cat(".DS_Store\n", file = ".gitignore", append = T)
   if (!any(grepl(paste0("^config.yml$"), xx)))
     cat("config.yml", "\n", file = ".gitignore", append = T)
   in_gitignore <- config::get("gitignore")
   lapply(in_gitignore, function(x) {
-    tdir <- config::get("dirs")[[x]]
+    tdir <- trimws(config::get("dirs")[[x]], "both")
+    if (is.null(tdir)) {
+      stop(x,
+           " not defined in dirs. make_structure() can't process .gitignore\n")
+    }
     if (!any(grepl(paste0("^", tdir, "$"), xx))) {
       cat(tdir, "\n", file = ".gitignore", append = T)
     }

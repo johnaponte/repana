@@ -59,7 +59,7 @@ test_that("handle .gitignore ok", {
   expect_true(file.exists(".gitignore"))
   xx <- readLines(".gitignore")
   # a second call to make_structure will not change .gitignore
-  make_structure
+  make_structure()
   yy <- readLines(".gitignore")
   expect_equal(xx, yy)
 })

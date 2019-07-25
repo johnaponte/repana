@@ -27,3 +27,6 @@
   
   - make_structure create directories and subdirectories 
   
+*Version 1.5*
+
+  - Fix the duplication of entries in gitignore
