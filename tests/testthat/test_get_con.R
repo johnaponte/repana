@@ -4,8 +4,6 @@
 library(DBI)
 context("Test get_con")
 
-# This test will fail on other machines and the location of the driver is
-# depends on the instalation and no guarantee it is located in the same place
 test_that("get_con works fine" , {
   curdir  = getwd()
   cat("\nCurrent directory: ", curdir,"\n")
@@ -15,12 +13,8 @@ test_that("get_con works fine" , {
 
   make_structure()
 
-  if (TRUE) {
-    test_con <- get_con()
-  }
-  else {
-    test_con <- get_con(p_con = dbConnect(RSQLite::SQLite(), ":memory:"))
-  }
+
+  test_con <- get_con()
   xiris <- iris
   xiris$Species <- as.character(xiris$Species)
   names(xiris) <- c("a", "b", "c", "d", "e")

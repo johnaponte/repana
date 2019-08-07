@@ -40,37 +40,26 @@ make_structure <- function() {
 
   # write the config.yml if not exists
   if (!file.exists("config.yml")) {
-    cat("default:\n", file = "config.yml")
-    cat("  dirs:\n", file = "config.yml", append = T)
-    cat("    data: _data\n", file = "config.yml", append = T)
-    cat("    functions: _functions\n",
-        file = "config.yml",
-        append = T)
-    cat("    handmade: handmade\n",
-        file = "config.yml",
-        append = T)
-    cat("    database: database\n",
-        file = "config.yml",
-        append = T)
-    cat("    reports: reports\n", file = "config.yml", append = T)
-    cat("    logs: logs\n", file = "config.yml", append = T)
     cat(
-      '  gitignore: !expr c("database","reports","logs")\n',
-      file = "config.yml",
-      append = T
+      "default:\n",
+      " dirs:\n",
+      "   data: _data\n",
+      "   functions: _functions\n",
+      "   handmade: handmade\n",
+      "   database: databasex\n",
+      "   reports: reports\n",
+      "   logs: logs\n",
+      " clean_before_new_analysis:\n",
+      "   - database\n",
+      "   - reports\n",
+      "   - logs\n",
+      " defaultdb:\n",
+      "   package: RSQLite\n",
+      "   dbconnect: SQLite\n",
+      '   dbname: ":memory:"\n',
+      file = "config.yml"
     )
-    cat("  defaultdb:\n", file = "config.yml", append = T)
-    driver = "PLEASE SETUP YOUR DRIVERS HERE"
-    if (get_os() == "osx" & file.exists("/usr/local/lib/libsqlite3odbc.dylib"))
-      driver = "/usr/local/lib/libsqlite3odbc.dylib"
-    if (get_os() == "linux" & file.exists("/usr/lib/x86_64-linux-gnu/odbc/libsqlite3odbc.so"))
-      driver = "/usr/lib/x86_64-linux-gnu/odbc/libsqlite3odbc.so"
-    if (get_os() == "windows")
-      driver = "SQLite3 ODBC Driver"
-    cat("    driver: ", driver, "\n",  file = "config.yml", append = T)
-    cat("    database: database/results.db\n",
-        file = "config.yml",
-        append = T)
+
   }
 
   # Process the .gitignore file
@@ -82,12 +71,12 @@ make_structure <- function() {
     cat(".DS_Store\n", file = ".gitignore", append = T)
   if (!any(grepl(paste0("^config.yml$"), xx)))
     cat("config.yml", "\n", file = ".gitignore", append = T)
-  in_gitignore <- config::get("gitignore")
+  in_gitignore <- config::get("clean_before_new_analysis")
   lapply(in_gitignore, function(x) {
     tdir <- trimws(config::get("dirs")[[x]], "both")
-    if (is.null(tdir)) {
+    if (length(tdir) == 0) {
       stop(x,
-           " not defined in dirs. make_structure() can't process .gitignore\n")
+           " not defined in dirs. check the config.yml file\n")
     }
     if (!any(grepl(paste0("^", tdir, "$"), xx))) {
       cat(tdir, "\n", file = ".gitignore", append = T)
@@ -110,11 +99,19 @@ make_structure <- function() {
 #' @author John J. Aponte
 #' @export
 clean_structure <- function() {
-  lapply( config::get("dirs") , function(x) {
-    if (dir.exists(x) &  (x %in% config::get("gitignore"))) {
-      unlink(x, recursive = T)
-      dir.create(x)
-    }
-  })
-  dir()
+  in_gitignore <- config::get("clean_before_new_analysis")
+  if (length(in_gitignore) > 0) {
+    cat("Make new directories for: \n")
+    lapply(in_gitignore, function(x) {
+      cat(x, "\n")
+      tdir <- trimws(config::get("dirs")[[x]], "both")
+      if (length(tdir) == 0) {
+        stop(x,
+             " not defined in dirs. check the config.yml file\n")
+      }
+      unlink(tdir, recursive = T)
+      dir.create(tdir)
+    })
+  }
+  return(invisible(in_gitignore))
 }

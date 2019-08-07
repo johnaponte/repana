@@ -30,3 +30,17 @@
 *Version 1.5*
 
   - Fix the duplication of entries in gitignore
+
+*Version 1.6*
+
+  - Change the way to define the gitignore, as a list instead of an expression
+
+*Version 1.7*
+  - change the gitignore entry in config.yml to clean_before_new_analysis which
+  is more explanatory for non git users.
+  This entry is not back compatible any more with the previous config.yml
+  
+  - The way to specify the database also changes. Now config.yml configure a
+  RSQLite in-memory database. This is also not back compatible with previous
+  config.yml
+  

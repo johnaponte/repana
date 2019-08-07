@@ -49,25 +49,27 @@ The function `make_structure()` creates the following sets of directors
 The information in `_data`, `_functions`, `handmade` as well as the scripts in the root 
 directory should be preserved as they are the core of your analysis.
 The files in `logs`, `reports` and `database` are created and recreated with 
-the scripts. Those are the results of your analysis. The function `clean_structure()`
-clean those directories so a new analysis could be re-run without worries that new
-and old results are mixed. If you use `git`, the `logs`, `reports` and `database` are
+the scripts. Those are the results of your analysis. 
+
+The function `clean_structure()`clean those directories included in the list `clean_before_new_analysis` 
+so a new analysis could be re-run without worries that new
+and old results are mixed. If you use `git`, those directories are
 candidates to be excluded from the control version by having them in the `.gitignore` file.
 (`make_structure()` take care of create a `.gitignore` if it does not exist or include those
 directories if they have not been yet included).
 
 The function `make_structure()` also writes a `config.yml` file to be use by the
-`config::get()` function. It contains a the following entries:
+`config::get()` function. It contains a the following entries under the default: tree
 
-__dirs__ to define the directories that make_structure will maintain. It have
+__dirs:__ to define the directories that make_structure will maintain. It have
 the values for `data`, `functions`, `database`, `reports`, `logs`, `handmade`
 directories. If you prefer other options than the defaults values you may change
-it.
+it. You may access those directories in your programs using `config::get("dirs")`
 
-__gitignore__ to define the set of directories that should be cleaned every time you want to repeat
+__clean_before_new_analysis:__ to define the list of directories that should be cleaned every time you want to repeat
 the analysis from zero. This directories are included in the `.gitignore`
 
-__defaultdb__ is written with the parameters for a `SQLite ODBC` driver, It make a guess according
+__defaultdb:__ is written with the parameters for a `SQLite ODBC` driver, It make a guess according
 to_the operational system but if not work please check the configuration of you
 ODBC driver for SQLite. More examples on `PostgreSQL ODBC ` driver will be provided later
 
@@ -168,7 +170,10 @@ default:
     database: database
     reports: reports
     logs: logs
-  gitignore: !expr c("database","reports","logs")
+  clean_before_new_analysis: 
+    - database
+    - reports
+    - logs
   defaultdb:
     driver:  /usr/local/lib/libsqlite3odbc.dylib 
     database: database/results.db
