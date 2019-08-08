@@ -44,3 +44,6 @@
   RSQLite in-memory database. This is also not back compatible with previous
   config.yml
   
+*Version 1.8*
+
+  - Include pool connections and update vignette and documentation

@@ -2,12 +2,12 @@
 % Please edit documentation in R/get_con.R
 \name{get_con}
 \alias{get_con}
-\title{Get connection from configuration file}
+\title{Get a DBI connection reading a  configuration file}
 \usage{
 get_con(configname = "defaultdb", file = "config.yml")
 }
 \arguments{
-\item{configname}{a string with the name of the value}
+\item{configname}{a string with the name of the configuration}
 
 \item{file}{name of the configuration to read from.}
 }
@@ -15,9 +15,9 @@ get_con(configname = "defaultdb", file = "config.yml")
 a \code{DBI} connection
 }
 \description{
-The project use DBI to get connection to a database. To keep the
-parameters of the connection we use the \code{config.yml} read by the
-\code{\link[config]{get}} function.  See the vignette for details.
+This function get a DBI connection to a database reading the parameters from a
+\code{config.yml} file using the \code{\link[config]{get}} function.
+See the vignette for details.
 }
 \author{
 John J. Aponte
