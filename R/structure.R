@@ -46,7 +46,7 @@ make_structure <- function() {
       "   data: _data\n",
       "   functions: _functions\n",
       "   handmade: handmade\n",
-      "   database: databasex\n",
+      "   database: database\n",
       "   reports: reports\n",
       "   logs: logs\n",
       " clean_before_new_analysis:\n",
