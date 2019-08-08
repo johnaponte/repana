@@ -14,21 +14,21 @@ test_that("make_structure create directories", {
 
   expect_true(dir.exists("_data"))
   expect_true(dir.exists("_functions"))
-  expect_true(dir.exists("databasex"))
+  expect_true(dir.exists("database"))
   expect_true(dir.exists("handmade"))
   expect_true(dir.exists("logs"))
   expect_true(dir.exists("reports"))
 
   file.create(file.path('_data','test1.txt'))
   file.create(file.path('_functions','test1.txt'))
-  file.create(file.path('databasex','test1.txt'))
+  file.create(file.path('database','test1.txt'))
   file.create(file.path('handmade','test1.txt'))
   file.create(file.path('logs','test1.txt'))
   file.create(file.path('reports','test1.txt'))
 
   expect_true(file.exists(file.path('_data','test1.txt')))
   expect_true(file.exists(file.path('_functions','test1.txt')))
-  expect_true(file.exists(file.path('databasex','test1.txt')))
+  expect_true(file.exists(file.path('database','test1.txt')))
   expect_true(file.exists(file.path('handmade','test1.txt')))
   expect_true(file.exists(file.path('logs','test1.txt')))
   expect_true(file.exists(file.path('reports','test1.txt')))
@@ -38,7 +38,7 @@ test_that("make_structure create directories", {
   expect_true(file.exists(file.path('_data','test1.txt')))
   expect_true(file.exists(file.path('_functions','test1.txt')))
   expect_true(file.exists(file.path('handmade','test1.txt')))
-  expect_false(file.exists(file.path('databasex','test1.txt')))
+  expect_false(file.exists(file.path('database','test1.txt')))
   expect_false(file.exists(file.path('logs','test1.txt')))
   expect_false(file.exists(file.path('reports','test1.txt')))
 
