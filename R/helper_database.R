@@ -29,10 +29,14 @@ write_log <- function(con, tablename, source){
 #' @param con DBI connection
 #' @param table the data.frame to be included in the database
 #' @param source a manual comment to identify the source of the table
+#' @param tablename if present, the data frame will be saved with this name.
+#' otherwise the name of the data.frame
 #' @import DBI
 #' @export
-update_table <- function(con, table, source) {
-  tablename <- as.character(substitute(table))
+update_table <- function(con, table, source, tablename) {
+  if (missing(tablename)) {
+    tablename <- as.character(substitute(table))
+  }
   #cat(tablename,"\n")
   dbBegin(con)
   rexpr <- try({

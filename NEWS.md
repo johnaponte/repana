@@ -1,3 +1,6 @@
+*repana 1.10*
+  - update table now accept an argument for the name of the table
+
 *repana 1.9*
   - Fix get_con to use a different config.yml if needed
 
