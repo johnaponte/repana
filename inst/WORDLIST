@@ -11,4 +11,5 @@ gitignore
 Rscript
 Rmd
 md
-
+RSQLite
+dbConnection

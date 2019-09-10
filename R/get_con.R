@@ -20,7 +20,7 @@
 get_con <-
   function(configname = "defaultdb",
            file = "config.yml") {
-    theconf <- config::get(configname)
+    theconf <- config::get(configname, file = file)
     package <- theconf$package
     dbconnect <- theconf$dbconnect
     othargs <- grep("(package)|(dbconnect)",names(theconf), invert = TRUE, value = TRUE)
