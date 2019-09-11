@@ -4,7 +4,7 @@
 \alias{update_table}
 \title{Helper function to include a data.frame in the database and update the log}
 \usage{
-update_table(con, table, source)
+update_table(con, table, source, tablename)
 }
 \arguments{
 \item{con}{DBI connection}
@@ -12,6 +12,9 @@ update_table(con, table, source)
 \item{table}{the data.frame to be included in the database}
 
 \item{source}{a manual comment to identify the source of the table}
+
+\item{tablename}{if present, the data frame will be saved with this name.
+otherwise the name of the data.frame}
 }
 \description{
 Helper function to include a data.frame in the database and update the log
