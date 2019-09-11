@@ -83,6 +83,16 @@ make_structure <- function() {
     }
   })
 
+  # Make the 01_clean.R file
+  if (!file.exists("01_clean.R")) {
+    cat("# Created by make_structre\n", file = "01_clean.R")
+    cat("# Clean the directories included the clean_before_new_analysis section of config.yml", file = "01_clean.R", append  = T)
+    cat("#", format(Sys.Date()), "\n", file = "01_clean.R", append  = T)
+    cat("# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #\n", file = "01_clean.R", append  = T)
+    cat("\n", file = "01_clean.R", append  = T)
+    cat("repana::clean_structure()\n", file = "01_clean.R", append  = T)
+  }
+
   # Make the directories
   lapply(c(
     config::get("dirs")

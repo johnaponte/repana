@@ -30,7 +30,7 @@ entries of the `config.yml`:
     
 * __handmade__ to keep all modified files and reports that should be kept
 
-The directories can be used in your programs by the `config::get("dirs")` function.
+The directories can be used in your programs by the `get_dirs()` function.
 
     
 The information in `data`, `functions`, `handmade` as well as the scripts in the root 
@@ -51,7 +51,7 @@ The function `make_structure()` writes a `config.yml` if it does not exists. Thi
 __dirs:__ to define the directories that make_structure will maintain. It have
 the entry values for `data`, `functions`, `database`, `reports`, `logs`, `handmade`
 directories. If you prefer other options than the defaults values you may change
-it. You may access those directories in your programs using `config::get("dirs")`
+it. You may access those directories in your programs using `get_dirs()`
 Note that the name for `data` and `function` does not have a underscore but by default
 the values are `_data` and `_function` respectively. `make_structure` will create the paths
 with the value of the entries but you access them in your program with the name of the entry.
@@ -82,7 +82,7 @@ Example to use `RSQLite` with a `results.db` file in the database directory
   defaultdb:
     package: RSQLite
     dbconnect: SQLite
-    dbname: database/results.db
+    dbname: dbname/results.db
 
 ```
 
@@ -118,7 +118,7 @@ identified by the pattern. By default use the pattern is `"^[0-9][0-9].*\\.R$"`,
 but not `report1.rmd`, `exploratory.R` etc..
 Files are run on the order starting from the first but if for any reason you need to omit the first files you may skip them with the `start` parameter.
 
-`logdir` is the directory for the logs, by default `config::get("dirs")$logs`
+`logdir` is the directory for the logs, by default `get_dirs()$logs`
 
 `rscript_path` is the full path to the `Rscript` program which is at the end the one that process the `R` file. 
 The current default is for a OS system. But implementation for Linux and Windows will soon be implemented.

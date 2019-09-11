@@ -1,3 +1,6 @@
+*repana 1.11*
+  - Include the get_dirs() function
+  
 *repana 1.10*
   - update table now accept an argument for the name of the table
 
