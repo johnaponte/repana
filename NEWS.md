@@ -1,3 +1,5 @@
+*repana 1.12* Fix tests for the make_structure now creates 01_clean.R file
+
 *repana 1.11*
   - Include the get_dirs() function
   
