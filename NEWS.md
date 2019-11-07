@@ -1,3 +1,6 @@
+*repana 1.14* Include a wrap to writeDataTable. Change as.character to deparse 
+to find the name of the data.frame in update_table.
+
 *repana 1.12* Fix tests for the make_structure now creates 01_clean.R file
 
 *repana 1.11*
