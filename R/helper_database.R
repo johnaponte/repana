@@ -35,7 +35,7 @@ write_log <- function(con, tablename, source){
 #' @export
 update_table <- function(con, table, source, tablename) {
   if (missing(tablename)) {
-    tablename <- as.character(substitute(table))
+    tablename <- deparse(substitute(table))
   }
   #cat(tablename,"\n")
   dbBegin(con)
