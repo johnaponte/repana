@@ -4,9 +4,13 @@
 \alias{master}
 \title{Runs the programs}
 \usage{
-master(pattern = "^[0-9][0-9].*\\\\.R$", start = 1, stop = Inf,
+master(
+  pattern = "^[0-9][0-9].*\\\\.R$",
+  start = 1,
+  stop = Inf,
   logdir = config::get("dirs")$logs,
-  rscript_path = "/usr/local/bin/Rscript")
+  rscript_path = "/usr/local/bin/Rscript"
+)
 }
 \arguments{
 \item{pattern}{Regular expression to select the files to run}

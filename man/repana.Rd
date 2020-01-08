@@ -3,7 +3,6 @@
 \docType{package}
 \name{repana}
 \alias{repana}
-\alias{repana-package}
 \title{repana: R reproducible Analysis.}
 \description{
 Set of utilities to make easy the reproduction of analysis in R.

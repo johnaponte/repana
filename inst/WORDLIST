@@ -13,3 +13,6 @@ Rmd
 md
 RSQLite
 dbConnection
+tablestyle
+wb
+writeDataTable

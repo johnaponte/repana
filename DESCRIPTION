@@ -10,7 +10,7 @@ Description: Set of utilities to make easy the reproduction of analysis in R.
 License: file LICENSE
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 6.1.1
+RoxygenNote: 7.0.2
 Suggests:
     spelling,
     testthat,

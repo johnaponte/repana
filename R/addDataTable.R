@@ -20,11 +20,13 @@
 #' @return silently the wb
 #'
 #' @examples
+#' \dontrun{
 #' library(openxlxs)
 #' options("openxlsx.minWidth" = 6)
 #' wb <- createWorkbook(title = "Test addDataTable")
 #' addDataTable(wb,iris)
 #' saveWorkbook(wb, "test_addDataTable.xlsx")
+#' }
 #' @importFrom openxlsx addWorksheet
 #' @importFrom openxlsx writeDataTable
 #' @importFrom openxlsx setColWidths

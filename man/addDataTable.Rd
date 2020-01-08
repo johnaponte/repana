@@ -4,8 +4,16 @@
 \alias{addDataTable}
 \title{A wrap to \code{\link[openxlsx]{writeDataTable}}}
 \usage{
-addDataTable(wb, df, sheet, tableName, tableStyle = "TableStyleMedium1",
-  withFilter = TRUE, firstActiveCol = NULL, ...)
+addDataTable(
+  wb,
+  df,
+  sheet,
+  tableName,
+  tableStyle = "TableStyleMedium1",
+  withFilter = TRUE,
+  firstActiveCol = NULL,
+  ...
+)
 }
 \arguments{
 \item{wb}{a workbook object}
@@ -33,9 +41,11 @@ an auto width to the column. For better results you could setup
 \code{options("openxlsx.minWidth" = 6)}
 }
 \examples{
+\dontrun{
 library(openxlxs)
 options("openxlsx.minWidth" = 6)
 wb <- createWorkbook(title = "Test addDataTable")
 addDataTable(wb,iris)
 saveWorkbook(wb, "test_addDataTable.xlsx")
+}
 }
