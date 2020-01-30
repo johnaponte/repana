@@ -1,3 +1,5 @@
+*repana 1.15* Include a function to wrap the render of rmarkdown documents within a program
+
 *repana 1.14* Include a wrap to writeDataTable. Change as.character to deparse 
 to find the name of the data.frame in update_table.
 
