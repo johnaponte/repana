@@ -4,13 +4,13 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
 
-#' A wrap to render a markadown report
+#' A wrap to render a markdown report
 #'
 #' Render the report and copy it to the `outputdir` directory.
 #' More formats are available but only three are included here
 #' `
 #' @param report filename of the report
-#' @param format output format. "pdf","htlm","word" are valid entries
+#' @param format output format. "pdf","html","word" are valid entries
 #' @param outputdir directory to save the  report
 #' @param ... other parameters for \code{\link[rmarkdown]{render}} function
 #' @export

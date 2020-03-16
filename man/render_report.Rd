@@ -2,14 +2,14 @@
 % Please edit documentation in R/render_report.R
 \name{render_report}
 \alias{render_report}
-\title{A wrap to render a markadown report}
+\title{A wrap to render a markdown report}
 \usage{
 render_report(report, format = "pdf", outputdir = get_dirs()$reports, ...)
 }
 \arguments{
 \item{report}{filename of the report}
 
-\item{format}{output format. "pdf","htlm","word" are valid entries}
+\item{format}{output format. "pdf","html","word" are valid entries}
 
 \item{outputdir}{directory to save the  report}
 

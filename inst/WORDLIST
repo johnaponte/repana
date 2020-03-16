@@ -16,3 +16,5 @@ dbConnection
 tablestyle
 wb
 writeDataTable
+rmarkdown
+tableStyle
