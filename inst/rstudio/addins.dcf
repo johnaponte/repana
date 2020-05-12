@@ -1,0 +1,4 @@
+Name: Insert Template
+Description: Insert a Template for a Snip at the cursor position
+Binding: insert_template
+Interactive: false

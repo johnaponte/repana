@@ -1,0 +1,24 @@
+#' ---
+#' title:
+#' author:
+#' date: XXXXX
+#' ---
+
+#' Execution date: ```r format(Sys.time())```
+
+#'
+#' # Introduction
+#'
+#'
+
+#' # Setup
+#+ echo = T, result = F, message = F, warning = F
+packages <- c(
+  'DBI',
+  'repana',
+  'dplyr',
+  'plyr',
+  'ggplot2'
+  )
+  pacman::p_load(char = packages)
+
