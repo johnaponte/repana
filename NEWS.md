@@ -1,4 +1,6 @@
-*repana 1.15* New RStudio addin to insert a Template documentation for a Snip program
+*repana 1.17* a master_snip function to run the code as SNIPs
+
+*repana 1.16* New RStudio addin to insert a Template documentation for a Snip program
 
 *repana 1.15* Include a function to wrap the render of rmarkdown documents within a program
 

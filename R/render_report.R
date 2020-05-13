@@ -15,6 +15,7 @@
 #' @param ... other parameters for \code{\link[rmarkdown]{render}} function
 #' @export
 #' @importFrom rmarkdown render
+#' @importFrom tools file_ext
 #' @seealso \code{\link[rmarkdown]{render}}
 #' @examples
 #' \dontrun{
@@ -27,16 +28,18 @@ render_report <-
            outputdir = get_dirs()$reports,
            ...) {
     stopifnot(format %in% c("pdf", "html", "word"))
-    subfix = paste0(".", format)
+    subfix =  format
     oformat = paste0(format, "_document")
-    if (format == "word") subfix = ".docx"
+    if (format == "word") subfix = "docx"
 
-    outputfile = paste0(gsub(".Rmd", "", report), subfix)
-    logfile = paste0(gsub(".Rmd", "", report), ".log")
+    ext = file_ext(report)
+    outputfile = gsub(ext, subfix, report)
+    logfile = gsub(ext, "log", report)
     rmarkdown::render(report, output_format = oformat ,...)
-    stopifnot(file.exists(outputfile))
-    file.copy(outputfile, outputdir, overwrite = T)
-    file.remove(outputfile)
+    if(file.exists(outputfile)) {
+      file.copy(outputfile, outputdir, overwrite = T)
+      file.remove(outputfile)
+    }
     if (file.exists(logfile))
       file.remove(logfile)
   }

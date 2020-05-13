@@ -83,15 +83,22 @@ make_structure <- function() {
     }
   })
 
+
   # Make the 01_clean.R file
   if (!file.exists("01_clean.R")) {
-    cat("# Created by make_structre\n", file = "01_clean.R")
-    cat("# Clean the directories included in the ", file = "01_clean.R", append  = T)
-    cat("# clean_before_new_analysis section of config.yml\n", file = "01_clean.R", append  = T)
-    cat("#", format(Sys.Date()), "\n", file = "01_clean.R", append  = T)
-    cat("# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # \n", file = "01_clean.R", append  = T)
-    cat("\n", file = "01_clean.R", append  = T)
-    cat("repana::clean_structure()\n", file = "01_clean.R", append  = T)
+    cat("#' ---\n", file= "01_clean.R")
+    cat("#' title: Clean directories\n", file= "01_clean.R", append  = T)
+    cat("#' author: Created by repana::makestructure()\n", file= "01_clean.R", append  = T)
+    cat("#' date: ", format(Sys.Date()),"\n", file= "01_clean.R", append  = T)
+    cat("#' ---\n", file= "01_clean.R", append  = T)
+    cat("#' \n", file= "01_clean.R", append  = T)
+    cat("#' Clean the directories included in the\n", file= "01_clean.R", append  = T)
+    cat("#' __clean_before_new_analysis__ section of config.yml\n", file= "01_clean.R", append  = T)
+    cat("#' \n", file= "01_clean.R", append  = T)
+    cat("#' Execution date:\n", file= "01_clean.R", append  = T)
+    cat("{{ format(Sys.time()) }}\n", file= "01_clean.R", append  = T)
+    cat("#' \n", file= "01_clean.R", append  = T)
+    cat("repana::clean_structure()\n", file= "01_clean.R", append  = T)
   }
 
   # Make the directories
