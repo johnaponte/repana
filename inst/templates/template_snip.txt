@@ -4,13 +4,13 @@
 #' date: XXXXX
 #' ---
 
-#' Execution date: ```r format(Sys.time())```
-
+#' Execution date:
+{{ format(Sys.time()) }}
 #'
 #' # Introduction
 #'
-#'
 
+#'
 #' # Setup
 #+ echo = T, result = F, message = F, warning = F
 packages <- c(
