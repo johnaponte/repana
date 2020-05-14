@@ -1,3 +1,5 @@
+*repana 1.17* Modifiy the templates to have one for the heading and one for the closing part of a SNIP
+
 *repana 1.17* a master_snip function to run the code as SNIPs
 
 *repana 1.16* New RStudio addin to insert a Template documentation for a Snip program
