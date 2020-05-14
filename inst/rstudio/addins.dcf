@@ -1,4 +1,9 @@
-Name: Insert Template
-Description: Insert a Template for a Snip at the cursor position
-Binding: insert_template
+Name: Insert Opening Template
+Description: Insert a Template for the begining of a Snip at the cursor position
+Binding: insert_open_template
+Interactive: false
+
+Name: Insert Closing Template
+Description: Insert a Template for the close part of a Snip at the cursor position
+Binding: insert_close_template
 Interactive: false

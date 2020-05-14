@@ -13,6 +13,7 @@
 #'
 #' # Setup
 #+ echo = T, result = F, message = F, warning = F
+starttime_ <- Sys.time()
 packages <- c(
   'DBI',
   'repana',

@@ -1,0 +1,8 @@
+#' # Session Info
+#'
+#+ echo = F, results = 'asis'
+toLatex(sessionInfo(),locale = F)
+
+#' Execution time:
+{{round(difftime(Sys.time(),starttime_,units = "min"),2)}}
+#' min
