@@ -7,7 +7,7 @@
 #' @return The template to insert
 #' @export
 #' @importFrom rstudioapi insertText
-insert_apen_template <- function(){
+insert_open_template <- function(){
   # This function is not included in the unit test
   fpath <- system.file("templates", "template_snip.txt", package="repana")
   txt <- readLines(fpath)
