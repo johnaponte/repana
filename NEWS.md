@@ -1,3 +1,5 @@
+*repana 1.19* Modifiy opening template to have plyr before dplyr and load tidyverse
+
 *repana 1.18* Modifiy the templates to have one for the heading and one for the closing part of a SNIP
 
 *repana 1.17* a master_snip function to run the code as SNIPs

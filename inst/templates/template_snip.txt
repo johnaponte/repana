@@ -14,12 +14,10 @@
 #' # Setup
 #+ echo = T, result = F, message = F, warning = F
 starttime_ <- Sys.time()
-packages <- c(
-  'DBI',
-  'repana',
-  'dplyr',
-  'plyr',
-  'ggplot2'
-  )
-  pacman::p_load(char = packages)
+packages <-
+  c('DBI',
+    'repana',
+    'plyr',
+    'tidyverse')
+pacman::p_load(char = packages)
 
