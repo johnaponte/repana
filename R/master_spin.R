@@ -2,7 +2,7 @@
 # 20200513 by JJAV
 # # # # # # # # # # # # # # # # # # # # #
 
-#' Render all programs as snip code
+#' Render all programs as spin code
 #'
 #' Render the programs specified by the pattern as SPIN reports
 #
@@ -17,7 +17,7 @@
 #' @importFrom utils write.table
 #' @export
 #' @return a data.frame with the files run, running time and exit status
-master_snip <-
+master_spin <-
   function(pattern = "^[0-9][0-9].*\\.R$",
            start = 1,
            stop = Inf,

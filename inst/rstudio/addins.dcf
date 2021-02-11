@@ -1,4 +1,4 @@
 Name: Insert Template
-Description: Insert a Template to be use with snip capabilities of RStudio, master() and master_snip()
+Description: Insert a Template to be use with spin capabilities of RStudio, master() and master_spin()
 Binding: insert_template
 Interactive: false

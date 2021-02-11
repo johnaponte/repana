@@ -8,9 +8,10 @@
 #' ## Introduction
 #'
 #' Include a description or objective of this document. This template can be
-#' use with the snip utilities from RStudio.
+#' use with the spin utilities from RStudio.
 #' Some helpful links:
 #'
+#' * [How to compile a report from a r script](https://rmarkdown.rstudio.com/articles_report_from_r_script.html)
 #' * [Quick reporting Build a report based on an R script](http://yihui.name/knitr/demo/stitch)
 #'
 #' * [How to use snip](https://rpubs.com/alobo/spintutorial)

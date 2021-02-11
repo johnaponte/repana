@@ -17,7 +17,7 @@ test_that("The pipeline works fine", {
   make_structure()
   file.copy(from = dir(curdir, pattern = "^[0-9][0-9].*\\.R$", full.names = T), to = tmpfile)
 
-  dfres <- master_snip(format = "pdf")
+  dfres <- master_spin(format = "pdf")
   expect_true(file.exists("logs/01_clean.pdf"))
   expect_true(file.exists("logs/02_prog_a.pdf"))
   expect_true(file.exists("logs/03_prog_b.pdf"))
@@ -43,7 +43,7 @@ test_that("The pipeline works fine with html", {
   make_structure()
   file.copy(from = dir(curdir, pattern = "^[0-9][0-9].*\\.R$", full.names = T), to = tmpfile)
 
-  dfres <- master_snip(format = "html")
+  dfres <- master_spin(format = "html")
   expect_true(file.exists("logs/01_clean.html"))
   expect_true(file.exists("logs/02_prog_a.html"))
   expect_true(file.exists("logs/03_prog_b.html"))
