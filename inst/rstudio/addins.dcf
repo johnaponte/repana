@@ -1,9 +1,4 @@
-Name: Insert Opening Template
-Description: Insert a Template for the begining of a Snip at the cursor position
-Binding: insert_open_template
-Interactive: false
-
-Name: Insert Closing Template
-Description: Insert a Template for the close part of a Snip at the cursor position
-Binding: insert_close_template
+Name: Insert Template
+Description: Insert a Template to be use with snip capabilities of RStudio, master() and master_snip()
+Binding: insert_template
 Interactive: false

@@ -15,11 +15,7 @@
 #'
 #' * [How to use snip](https://rpubs.com/alobo/spintutorial)
 #'
-#' * [Markdown Cheatsheet](http://support.mashery.com/docs/customizing_your_portal/Markdown_Cheat_Sheet)
-#'
-#' * [Mardown Tutorial](https://www.markdowntutorial.com/)
-#'
-
+#' * [RMarkdown tutorial](https://rmarkdown.rstudio.com/lesson-1.html)
 #'
 #' ## Setup
 #'
