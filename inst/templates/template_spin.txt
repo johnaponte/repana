@@ -11,7 +11,7 @@
 #' use with the spin utilities from RStudio.
 #' Some helpful links:
 #'
-#' * [How to compile a report from a r script](https://rmarkdown.rstudio.com/articles_report_from_r_script.html)
+#' * [How to compile a report from a R script](https://rmarkdown.rstudio.com/articles_report_from_r_script.html)
 #'
 #' * [Build a report based on an R script](http://yihui.name/knitr/demo/stitch)
 #'
