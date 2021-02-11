@@ -1,5 +1,7 @@
 *repana 1.20* Modify templates. Now only 1 exists which is more friendly for pdf and html render
- and improve the search of Rscript to be windows friendly
+ and improve the search of Rscript to be windows friendly. DBI is declared as dependent and therefore
+ it is loaded automatically with the package. Master snip is now by default html but a new parameters
+ allow to select the type of render
 
 *repana 1.19* Modify opening template to have plyr before dplyr and load tidyverse
 

@@ -11,7 +11,7 @@ License: file LICENSE
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.1.1
-Required:
+Depends:
     DBI (>= 1.0)
 Suggests:
     spelling,
@@ -21,7 +21,6 @@ Suggests:
     RPostgres,
     pacman
 Imports: 
-    DBI,
     config,
     plyr,
     dplyr,

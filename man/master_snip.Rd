@@ -8,7 +8,8 @@ master_snip(
   pattern = "^[0-9][0-9].*\\\\.R$",
   start = 1,
   stop = Inf,
-  logdir = config::get("dirs")$logs
+  logdir = config::get("dirs")$logs,
+  format = "html"
 )
 }
 \arguments{
@@ -20,6 +21,8 @@ master_snip(
 
 \item{logdir}{directory to keep the logs of the files. By default
 the entry on the \code{config.yml} \code{dirs:logs}}
+
+\item{format}{Format to render the report. values accepted are "pdf", "html" and "word"}
 }
 \value{
 a data.frame with the files run, running time and exit status
