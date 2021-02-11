@@ -1,23 +1,49 @@
 #' ---
 #' title:
 #' author:
-#' date: XXXXX
+#' date: "XXXXX"
 #' ---
 
-#' Execution date:
-{{ format(Sys.time()) }}
 #'
-#' # Introduction
+#' ## Introduction
+#'
+#' Include a description or objective of this document. This template can be
+#' use with the snip utilities from RStudio.
+#' Some helpful links:
+#'
+#' * [Quick reporting Build a report based on an R script](http://yihui.name/knitr/demo/stitch)
+#'
+#' * [How to use snip](https://rpubs.com/alobo/spintutorial)
+#'
+#' * [Markdown Cheatsheet](http://support.mashery.com/docs/customizing_your_portal/Markdown_Cheat_Sheet)
+#'
+#' * [Mardown Tutorial](https://www.markdowntutorial.com/)
 #'
 
 #'
-#' # Setup
-#+ echo = T, result = F, message = F, warning = F
+#' ## Setup
+#'
+#+ echo = T, result = "hide", message = F, warning = F
 starttime_ <- Sys.time()
-packages <-
-  c('DBI',
-    'repana',
-    'plyr',
-    'tidyverse')
-pacman::p_load(char = packages)
+library(DBI)
+library(repana)
+library(plyr)
+library(tidyverse)
+options(knitr.duplicate.label = "allow")
 
+#'
+#' ## Analysis
+#'
+#+ echo = T
+
+
+
+
+
+#'
+#' ## Session Info
+#'
+#+  echo = F
+cat("Execution date: " , format(starttime_ ),"/n")
+cat("Execution time: ", round(difftime(Sys.time(),starttime_,units = "min"),2), "min/n")
+print(sessionInfo(), locale = F)

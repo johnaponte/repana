@@ -4,7 +4,7 @@ author: "John Aponte"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Using Repana}
+  %\VignetteIndexEntry{Using repana}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---

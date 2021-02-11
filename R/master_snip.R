@@ -2,7 +2,7 @@
 # 20200513 by JJAV
 # # # # # # # # # # # # # # # # # # # # #
 
-#' Render all programs as spin code
+#' Render all programs as snip code
 #'
 #' Render the programs specified by the pattern as SPIN reports
 #
@@ -11,6 +11,7 @@
 #' @param stop index of the program to stop
 #' @param logdir directory to keep the logs of the files. By default
 #' the entry on the \code{config.yml} \code{dirs:logs}
+#' @param format Format to render the report. values accepted are "pdf", "html" and "word"
 #' @import readr
 #' @import config
 #' @importFrom utils write.table
@@ -20,7 +21,8 @@ master_snip <-
   function(pattern = "^[0-9][0-9].*\\.R$",
            start = 1,
            stop = Inf,
-           logdir = config::get("dirs")$logs) {
+           logdir = config::get("dirs")$logs,
+           format = "html") {
 
     scriptlist = dir(".", pattern = pattern, full.names = T)
     tostop = min(length(scriptlist), stop)
@@ -29,7 +31,7 @@ master_snip <-
         cat(x, "\n")
         start = Sys.time()
         res <-
-          try(render_report(x,"pdf",logdir))
+          try(render_report(x,format,logdir))
         res <- ifelse(is.null(res),0,res)
         end <- Sys.time()
         elapsed = difftime(end, start)

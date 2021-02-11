@@ -29,21 +29,24 @@ master <-
            start = 1,
            stop = Inf,
            logdir = config::get("dirs")$logs,
-           rscript_path = "/usr/local/bin/Rscript") {
+           rscript_path) {
     if (missing(rscript_path)) {
-      if (file.exists("/usr/local/bin/Rscript"))
-        rscript_path = "/usr/local/bin/Rscript"
+      binpath <- file.path(R.home(), "bin")
+      if (file.exists(file.path(binpath, "Rscript"))) {
+        rscript_path = file.path(binpath, "Rscript")
+      }
       else {
-        if (file.exists("/usr/bin/Rscript")) {
-          rscript_path = "/usr/bin/Rscript"
-        }
+        if (file.exists(file.path(binpath, "Rscript.exe"))) {
+          rscript_path = file.path(
+            binpath,
+            "Rscript.exe")
+          }
         else {
           rscript_path = "Rscript"
         }
 
       }
     }
-    stopifnot(file.exists(rscript_path))
     scriptlist = dir(".", pattern = pattern, full.names = T)
     tostop = min(length(scriptlist), stop)
     reslogs <-

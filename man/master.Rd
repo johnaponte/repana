@@ -9,7 +9,7 @@ master(
   start = 1,
   stop = Inf,
   logdir = config::get("dirs")$logs,
-  rscript_path = "/usr/local/bin/Rscript"
+  rscript_path
 )
 }
 \arguments{

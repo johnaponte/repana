@@ -1,6 +1,9 @@
-*repana 1.19* Modifiy opening template to have plyr before dplyr and load tidyverse
+*repana 1.20* Modify templates. Now only 1 exists which is more friendly for pdf and html render
+ and improve the search of Rscript to be windows friendly
 
-*repana 1.18* Modifiy the templates to have one for the heading and one for the closing part of a SNIP
+*repana 1.19* Modify opening template to have plyr before dplyr and load tidyverse
+
+*repana 1.18* Modify the templates to have one for the heading and one for the closing part of a SNIP
 
 *repana 1.17* a master_snip function to run the code as SNIPs
 
