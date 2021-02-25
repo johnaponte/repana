@@ -42,6 +42,6 @@ options(knitr.duplicate.label = "allow")
 #' ## Session Info
 #'
 #+  echo = F
-cat("Execution date: " , format(starttime_ ),"/n")
-cat("Execution time: ", round(difftime(Sys.time(),starttime_,units = "min"),2), "min/n")
+cat("Execution date: " , format(starttime_ ),"\n")
+cat("Execution time: ", round(difftime(Sys.time(),starttime_,units = "min"),2), "min\n")
 print(sessionInfo(), locale = F)

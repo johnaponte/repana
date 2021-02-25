@@ -1,3 +1,5 @@
+*repana 1.21* Small correction in the template
+
 *repana 1.20* Modify templates. Now only 1 exists which is more friendly for pdf and html render
  and improve the search of Rscript to be windows friendly. DBI is declared as dependent and therefore
  it is loaded automatically with the package. Master spin is now by default html but a new parameters
