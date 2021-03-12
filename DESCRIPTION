@@ -1,13 +1,13 @@
 Package: repana
 Type: Package
 Title: Repeatable Analysis in R
-Version: 1.21
-Authors@R: person("Aponte", "John", email = "apontej@who.int", role = c("aut","cre"))
+Version: 1.22.0
+Authors@R: person("Aponte", "John", email = "john.j.aponte@gmail.com", role = c("aut","cre"))
 Description: Set of utilities to make easy the reproduction of analysis in R.
  It allow to make_structure, clean_structure, and run and log programs in a
  predefined order to allow secondary files, analysis and reports be constructed in
  and ordered form.
-License: file LICENSE
+License: GPL (>= 3)
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.1.1

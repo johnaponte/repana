@@ -1,3 +1,5 @@
+*repana 1.22.0* Modification of the version to have three numbers, change author address to submit to CRAN
+
 *repana 1.21* Small correction in the template
 
 *repana 1.20* Modify templates. Now only 1 exists which is more friendly for pdf and html render
