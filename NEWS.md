@@ -1,4 +1,4 @@
-*repana 1.22.0* Modification of the version to have three numbers, change author address to submit to CRAN
+*repana 1.22.0* Modification of the version to have three numbers, change author address to submit to CRAN. Modify license. Modify render_report to not delete the output file if the output directory is the same as the directory of the input file.
 
 *repana 1.21* Small correction in the template
 

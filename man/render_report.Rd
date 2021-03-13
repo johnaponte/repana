@@ -22,7 +22,7 @@ More formats are available but only three are included here
 }
 \examples{
 \dontrun{
-render_report("myreport","pdf")
+render_report(myreport.rmd,"pdf")
 }
 
 }

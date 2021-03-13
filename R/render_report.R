@@ -16,10 +16,11 @@
 #' @export
 #' @importFrom rmarkdown render
 #' @importFrom tools file_ext
+#' @importFrom tools file_path_as_absolute
 #' @seealso \code{\link[rmarkdown]{render}}
 #' @examples
 #' \dontrun{
-#' render_report("myreport","pdf")
+#' render_report(myreport.rmd,"pdf")
 #' }
 #'
 render_report <-
@@ -31,19 +32,22 @@ render_report <-
     subfix =  format
     oformat = paste0(format, "_document")
     if (format == "word") subfix = "docx"
-
     ext = file_ext(report)
     outputfile = gsub(ext, subfix, report)
     logfile = gsub(ext, "log", report)
     rmarkdown::render(report, output_format = oformat ,...)
     if(file.exists(outputfile)) {
       file.copy(outputfile, outputdir, overwrite = T)
-      file.remove(outputfile)
+      if (
+        file_path_as_absolute(outputfile) !=
+        file_path_as_absolute(file.path(outputdir,outputfile))
+      ) {
+        file.remove(outputfile)
+      }
     }
     if (file.exists(logfile))
       file.remove(logfile)
   }
-
 
 
 

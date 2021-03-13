@@ -19,4 +19,7 @@ test_that("render_report make a pdf", {
   expect(file.exists("reports/test_report.html"),"HTML file not created")
   render_report("test_report.Rmd", "word")
   expect(file.exists("reports/test_report.docx"), "DOCX file not created")
+  render_report("test_report.Rmd","html","./")
+  expect(file.exists("test_report.html"), "HTML file not created in other dir")
+
 })
