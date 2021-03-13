@@ -13,12 +13,12 @@ test_that("render_report make a pdf", {
 
   make_structure()
   file.copy(repfile, "test_report.Rmd")
-  render_report("test_report.Rmd", "pdf")
-  expect(file.exists("reports/test_report.pdf"),"PDF file not created")
+  #render_report("test_report.Rmd", "pdf")
+  #expect(file.exists("reports/test_report.pdf"),"PDF file not created")
   render_report("test_report.Rmd", "html")
   expect(file.exists("reports/test_report.html"),"HTML file not created")
-  render_report("test_report.Rmd", "word")
-  expect(file.exists("reports/test_report.docx"), "DOCX file not created")
+  #render_report("test_report.Rmd", "word")
+  #expect(file.exists("reports/test_report.docx"), "DOCX file not created")
   render_report("test_report.Rmd","html","./")
   expect(file.exists("test_report.html"), "HTML file not created in other dir")
 
