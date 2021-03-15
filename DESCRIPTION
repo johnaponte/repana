@@ -2,7 +2,12 @@ Package: repana
 Type: Package
 Title: Repeatable Analysis in R
 Version: 1.22.0
-Authors@R: person("Aponte", "John", email = "john.j.aponte@gmail.com", role = c("aut","cre"))
+Authors@R: person(
+            given = "John J.",
+            family = "Aponte",
+            role = c("aut", "cre"),
+            email = "john.j.aponte@gmail.com",
+            comment = c(ORCID = "0000-0002-3014-3673"))
 Description: Set of utilities to make easy the reproduction of analysis in R.
  It allow to make_structure, clean_structure, and run and log programs in a
  predefined order to allow secondary files, analysis and reports be constructed in
