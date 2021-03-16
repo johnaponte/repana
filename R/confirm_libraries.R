@@ -15,7 +15,9 @@
 #' @importFrom utils installed.packages
 #' @author John J. Aponte
 #' @examples
+#'  \dontrun{
 #' confirm_libraries()
+#' }
 #' @export
 confirm_libraries <- function() {
   rfiles <-
