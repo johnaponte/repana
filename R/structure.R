@@ -16,6 +16,7 @@
 #' The \code{data}, \code{handmade} are not clean. The rest are clean as they
 #' should be reproduced by the automatic stream. Do not forget to include them
 #' in \code{.gitignore} if you use \code{git}
+#' @return the \code{dir} structure
 #' @author John J. Aponte
 #' @export
 make_structure <- function() {
@@ -114,6 +115,8 @@ make_structure <- function() {
 #' Clean the secondary files of the project
 #'
 #' Delete and make new \code{database}, \code{logs} and \code{reports} directory
+#' @return Invisible, the directories defined by the  clean_before_new_analysis
+#' entry in the config.yml file.
 #' @author John J. Aponte
 #' @export
 clean_structure <- function() {

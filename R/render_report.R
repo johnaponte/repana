@@ -12,7 +12,8 @@
 #' @param report filename of the report
 #' @param format output format. "pdf","html","word" are valid entries
 #' @param outputdir directory to save the  report
-#' @param ... other parameters for \code{\link[rmarkdown]{render}} function
+#' @param ... other parameters for \code{\link[rmarkdown:render]{render}} function
+#' @return No return value, called for side effects to render the reports
 #' @export
 #' @importFrom rmarkdown render
 #' @importFrom tools file_ext
@@ -47,6 +48,7 @@ render_report <-
     }
     if (file.exists(logfile))
       file.remove(logfile)
+    return()
   }
 
 

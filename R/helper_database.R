@@ -10,6 +10,7 @@
 #' @param con DBI connection
 #' @param tablename the name of the table
 #' @param source a manual comment to identify the source of the table
+#' @return the result from \code{\link[DBI:dbWriteTable]{DBI}}
 #' @import DBI
 #' @importFrom  dplyr filter
 #' @importFrom dplyr bind_rows
@@ -30,6 +31,7 @@ write_log <- function(con, tablename, source){
 #' @param table the data.frame to be included in the database
 #' @param source a manual comment to identify the source of the table
 #' @param tablename if present, the data frame will be saved with this name.
+#' @return the result from \code{\link[DBI:dbWriteTable]{DBI}}
 #' otherwise the name of the data.frame
 #' @import DBI
 #' @export
@@ -54,6 +56,7 @@ update_table <- function(con, table, source, tablename) {
 
 #' Helper function to drop all tables from a database
 #' @param con DBI connection
+#' @return invisible, a lit with result from \code{\link[DBI:dbRemoveTable]{DBI}}
 #' @import DBI
 #' @export
 clean_database <- function(con) {
