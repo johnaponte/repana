@@ -49,16 +49,21 @@ confirm_libraries <- function() {
       stringsAsFactors = FALSE
     )
   })
-  mlibs <-
-    libfiles %>% filter(installed == "MISSING") %>% select(libraries)
-  if (nrow(mlibs) == 0) {
-    cat("ALL libraries installed \n")
+  if (nrow(libfiles) > 0) {
+    mlibs <-
+      libfiles %>% filter(installed == "MISSING") %>% select(libraries)
+    if (nrow(mlibs) == 0) {
+      cat("ALL libraries installed \n")
+    }
+    else {
+      cat("Following libraries are not installed:\n")
+      cat(paste(sort(unique(
+        mlibs$libraries
+      )), collapse = ", "), "\n")
+    }
   }
-  else {
-    cat("Following libraries are not installed:\n")
-    cat(paste(sort(unique(
-      mlibs$libraries
-    )), collapse = ", "), "\n")
+  else{
+    cat("No libraries found\n")
   }
   return(invisible(libfiles))
 }

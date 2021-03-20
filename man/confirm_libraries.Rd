@@ -14,7 +14,9 @@ Search all R and Rmd files for the keyword library(  or ::
 and check if the library is installed.
 }
 \examples{
+ \dontrun{
 confirm_libraries()
+}
 }
 \author{
 John J. Aponte

@@ -8,6 +8,8 @@ Authors@R: person(
             role = c("aut", "cre"),
             email = "john.j.aponte@gmail.com",
             comment = c(ORCID = "0000-0002-3014-3673"))
+Date: 2021-03-15
+URL: https://github.com/johnaponte/repana
 Description: Set of utilities to make easy the reproduction of analysis in R.
  It allow to make_structure, clean_structure, and run and log programs in a
  predefined order to allow secondary files, analysis and reports be constructed in
