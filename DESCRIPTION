@@ -39,5 +39,5 @@ Imports:
     rstudioapi,
     pool,
     openxlsx
-Language: en-GB
+Language: en-US
 VignetteBuilder: knitr
