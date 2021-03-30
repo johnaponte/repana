@@ -13,6 +13,9 @@ write_log(con, tablename, source)
 
 \item{source}{a manual comment to identify the source of the table}
 }
+\value{
+the result from \code{\link[DBI:dbWriteTable]{DBI}}
+}
 \description{
 Make a log of the database updates. If the log table does not exists it creates it
 Make a new entry with the timestamp of the update

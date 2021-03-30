@@ -6,6 +6,9 @@
 \usage{
 make_structure()
 }
+\value{
+the \code{dir} structure
+}
 \description{
 Make the following directories
 \itemize{

@@ -6,6 +6,10 @@
 \usage{
 clean_structure()
 }
+\value{
+Invisible, the directories defined by the  clean_before_new_analysis
+entry in the config.yml file.
+}
 \description{
 Delete and make new \code{database}, \code{logs} and \code{reports} directory
 }

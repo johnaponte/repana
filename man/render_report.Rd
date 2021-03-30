@@ -13,7 +13,10 @@ render_report(report, format = "pdf", outputdir = get_dirs()$reports, ...)
 
 \item{outputdir}{directory to save the  report}
 
-\item{...}{other parameters for \code{\link[rmarkdown]{render}} function}
+\item{...}{other parameters for \code{\link[rmarkdown:render]{render}} function}
+}
+\value{
+No return value, called for side effects to render the reports
 }
 \description{
 Render the report and copy it to the `outputdir` directory.

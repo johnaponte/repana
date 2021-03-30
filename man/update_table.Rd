@@ -13,8 +13,11 @@ update_table(con, table, source, tablename)
 
 \item{source}{a manual comment to identify the source of the table}
 
-\item{tablename}{if present, the data frame will be saved with this name.
-otherwise the name of the data.frame}
+\item{tablename}{if present, the data frame will be saved with this name.}
+}
+\value{
+the result from \code{\link[DBI:dbWriteTable]{DBI}}
+otherwise the name of the data.frame
 }
 \description{
 Helper function to include a data.frame in the database and update the log

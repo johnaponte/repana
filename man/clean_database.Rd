@@ -9,6 +9,9 @@ clean_database(con)
 \arguments{
 \item{con}{DBI connection}
 }
+\value{
+invisible, a lit with result from \code{\link[DBI:dbRemoveTable]{DBI}}
+}
 \description{
 Helper function to drop all tables from a database
 }
