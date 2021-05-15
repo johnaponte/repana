@@ -27,7 +27,7 @@ no longer part of the main stream but need to be kept such as re-formatted repor
 The aspiration of this package is that you can set up an analysis with the `make_structure()` function,
 have access to the database using `get_con()` function, have your tables in the 
 database documented with the `update_table()` function, and reproduce a complete analysis
-by running the  `master()` function
+by running the  `master()` function.
 
 ## Directory Structure
 

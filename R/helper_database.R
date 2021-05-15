@@ -62,7 +62,7 @@ update_table <- function(con, table, source, tablename) {
 clean_database <- function(con) {
   invisible(
     lapply(dbListTables(con),function(x){
-      cat("DROP TABLE ",x,"\n")
+      message("DROP TABLE ",x,"\n")
       dbRemoveTable(con,x)})
   )
 }

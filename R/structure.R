@@ -122,9 +122,9 @@ make_structure <- function() {
 clean_structure <- function() {
   in_gitignore <- config::get("clean_before_new_analysis")
   if (length(in_gitignore) > 0) {
-    cat("Make new directories for: \n")
+    message("Make new directories for: \n")
     lapply(in_gitignore, function(x) {
-      cat(x, "\n")
+      message(x, "\n")
       tdir <- trimws(config::get("dirs")[[x]], "both")
       if (length(tdir) == 0) {
         stop(x,

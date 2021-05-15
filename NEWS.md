@@ -1,3 +1,7 @@
+*repana 1.23.0* The confirm_libraries function has been removed. It was not really
+useful and potentially would not work well if many libraries are installed in the
+system. Messages on the make_structure are now messages and not calls to cat() function.
+
 *repana 1.22.0* Modification of the version to have three numbers, change author address to submit to CRAN. Modify license. Modify render_report to not delete the output file if the output directory is the same as the directory of the input file.
 
 *repana 1.21* Small correction in the template
