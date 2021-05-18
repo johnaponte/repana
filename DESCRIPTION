@@ -1,7 +1,7 @@
 Package: repana
 Type: Package
 Title: Repeatable Analysis in R
-Version: 1.23.0
+Version: 1.23.1
 Authors@R: person(
             given = "John J.",
             family = "Aponte",
@@ -28,7 +28,6 @@ Suggests:
     pacman
 Imports: 
     config,
-    plyr,
     dplyr,
     magrittr,
     lubridate,

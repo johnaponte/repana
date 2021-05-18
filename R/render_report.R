@@ -16,6 +16,7 @@
 #' @return No return value, called for side effects to render the reports
 #' @export
 #' @importFrom rmarkdown render
+#' @importFrom rmarkdown pandoc_available
 #' @importFrom tools file_ext
 #' @importFrom tools file_path_as_absolute
 #' @seealso \code{\link[rmarkdown]{render}}
@@ -29,6 +30,7 @@ render_report <-
            format = "pdf",
            outputdir = get_dirs()$reports,
            ...) {
+    stopifnot(pandoc_available("1.12.3"))
     stopifnot(format %in% c("pdf", "html", "word"))
     subfix =  format
     oformat = paste0(format, "_document")

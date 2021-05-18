@@ -1,3 +1,6 @@
+*repana 1.23.1* Remove unused dependencies. Check that report is render only if pandoc
+is available. Test for render reports only if pandoc is available
+
 *repana 1.23.0* The confirm_libraries function has been removed. It was not really
 useful and potentially would not work well if many libraries are installed in the
 system. Messages on the make_structure are now messages and not calls to cat() function.
