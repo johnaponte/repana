@@ -1,7 +1,7 @@
 ## Version 1.23.01
 The reference to unused libraries has been removed.
-The render report now checks the existance of pandoc. Tests that involve
-render report also chech for the existance of pandoc and are bypassed if not.
+The render report now checks the existence of pandoc. Tests that involve
+render report also chech for the existence of pandoc and are bypassed if not.
 
 
 
