@@ -1,3 +1,10 @@
+## Version 1.23.01
+The reference to unused libraries has been removed.
+The render report now checks the existance of pandoc. Tests that involve
+render report also chech for the existance of pandoc and are bypassed if not.
+
+
+
 ## Version 1.23
 Thanks to the reviewers. Typos has been corrected. Messages now as messages
 and not call to the cat() function. The function confirm_libraries has been
