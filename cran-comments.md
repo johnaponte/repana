@@ -1,4 +1,8 @@
-## Version 1.23.01
+## Version 1.23.2
+Fix the behavior if the output_file parameter is included in the render_function().
+
+
+## Version 1.23.1
 The reference to unused libraries has been removed.
 The render report now checks the existence of pandoc. Tests that involve
 render report also chech for the existence of pandoc and are bypassed if not.
