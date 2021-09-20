@@ -1,3 +1,5 @@
+*repana 1.23.2* Fix a bug if an output_file is included as parameter in the render_function
+
 *repana 1.23.1* Remove unused dependencies. Check that report is render only if pandoc
 is available. Test for render reports only if pandoc is available
 

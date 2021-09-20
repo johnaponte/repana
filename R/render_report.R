@@ -36,8 +36,14 @@ render_report <-
     oformat = paste0(format, "_document")
     if (format == "word") subfix = "docx"
     ext = file_ext(report)
-    outputfile = gsub(ext, subfix, report)
+    dots<- list(...)
+    if ("output_file" %in% names(dots)) {
+      outputfile = dots$output_file
+    } else{
+      outputfile = gsub(ext, subfix, report)
+    }
     logfile = gsub(ext, "log", report)
+    cat("outputfile:", outputfile,"\n")
     rmarkdown::render(report, output_format = oformat ,...)
     if(file.exists(outputfile)) {
       file.copy(outputfile, outputdir, overwrite = T)

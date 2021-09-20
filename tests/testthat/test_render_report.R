@@ -29,3 +29,24 @@ test_that("render_report make a pdf", {
     expect(TRUE,"Test not done")
   }
 })
+
+test_that("An output file name is provided to the render", {
+  if (pandoc_available(version = minpandoc)) {
+    curdr  = getwd()
+    repfile = file.path(curdr, "test_report.Rmd")
+    tmpfile <- tempfile()
+    dir.create(tmpfile)
+    setwd(tmpfile)
+
+    make_structure()
+    file.copy(repfile, "test_report.Rmd")
+    render_report("test_report.Rmd", "html", output_file = "borrar.html")
+    expect(file.exists("reports/borrar.html"),"HTML file not created")
+    expect(!file.exists("borrar.html"), "Original report not deleted")
+
+  }
+  else {
+    expect(TRUE,"Test not done")
+  }
+
+})

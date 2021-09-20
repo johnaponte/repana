@@ -1,7 +1,7 @@
 Package: repana
 Type: Package
 Title: Repeatable Analysis in R
-Version: 1.23.1
+Version: 1.23.2
 Authors@R: person(
             given = "John J.",
             family = "Aponte",
