@@ -1,7 +1,7 @@
 #' ---
 #' title:
 #' author:
-#' date: "XXXXX"
+#' date: "[INSERT DATE]"
 #' ---
 
 #'
@@ -27,7 +27,7 @@ library(DBI)
 library(repana)
 library(plyr)
 library(tidyverse)
-options(knitr.duplicate.label = "allow")
+
 
 #'
 #' ## Analysis

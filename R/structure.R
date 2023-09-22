@@ -58,9 +58,17 @@ make_structure <- function() {
       "   package: RSQLite\n",
       "   dbconnect: SQLite\n",
       '   dbname: ":memory:"\n',
+      " template:\n",
+      "   _template_spin.R",
       file = "config.yml"
     )
 
+  }
+
+
+  if (!file.exists("_template_spin.R")) {
+    fpath <- system.file("templates", "template_spin.txt", package="repana")
+    file.copy(fpath,"_template_spin.R")
   }
 
   # Process the .gitignore file
@@ -82,6 +90,7 @@ make_structure <- function() {
     if (!any(grepl(paste0("^", tdir, "$"), xx))) {
       cat(tdir, "\n", file = ".gitignore", append = T)
     }
+   cat("*.Rproj")
   })
 
 
