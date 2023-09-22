@@ -1,18 +1,34 @@
+## Version 1.24.0
+
+* Modify the documentation at package level as requested by CRAN
+
+* Allow to change the template file for a project
+
+* Vignete with the use of package improved
+
 ## Version 1.23.2
-Fix the behavior if the output_file parameter is included in the render_function().
+
+* Fix the behavior if the output_file parameter is included in the render_function().
 
 
 ## Version 1.23.1
-The reference to unused libraries has been removed.
-The render report now checks the existence of pandoc. Tests that involve
-render report also chech for the existence of pandoc and are bypassed if not.
+
+* The reference to unused libraries has been removed.
+
+* The render report now checks the existence of pandoc. 
+
+* Tests that involve render report also check for the existence of pandoc and are bypassed if not.
 
 
 
 ## Version 1.23
-Thanks to the reviewers. Typos has been corrected. Messages now as messages
-and not call to the cat() function. The function confirm_libraries has been
-removed as it really not usefull and potentially not work well in systems with
+Thanks to the reviewers. 
+
+* Typos has been corrected. 
+
+* Messages now as messages and not call to the cat() function. 
+
+* The function confirm_libraries has been removed as it really not useful and potentially not work well in systems with
 many libraries installed.
 
 ## Test environments

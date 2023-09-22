@@ -19,7 +19,7 @@ render_report(report, format = "pdf", outputdir = get_dirs()$reports, ...)
 No return value, called for side effects to render the reports
 }
 \description{
-Render the report and copy it to the `outputdir` directory.
+Render the report and copy it to the \code{outputdir} directory.
 More formats are available but only three are included here
 `
 }
