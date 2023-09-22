@@ -6,7 +6,7 @@
 
 * Allow to change the template file for a project
 
-* Vignete with the use of package improved
+* pggdown is used to create a website for the package in githum
 
 # repana 1.23.2
 
