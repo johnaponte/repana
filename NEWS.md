@@ -6,7 +6,10 @@
 
 * Allow to change the template file for a project
 
-* pggdown is used to create a website for the package in githum
+* pkgdown is used to create a website for the package in github
+
+* Change the way timestamp is manage. It does not need anymore to include
+the start and end within the program.
 
 # repana 1.23.2
 

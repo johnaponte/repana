@@ -59,7 +59,7 @@ make_structure <- function() {
       "   dbconnect: SQLite\n",
       '   dbname: ":memory:"\n',
       " template:\n",
-      "   _template_spin.R",
+      "   _template.txt\n",
       file = "config.yml"
     )
 
@@ -68,7 +68,7 @@ make_structure <- function() {
 
   if (!file.exists("_template_spin.R")) {
     fpath <- system.file("templates", "template_spin.txt", package="repana")
-    file.copy(fpath,"_template_spin.R")
+    file.copy(fpath,"_template.txt")
   }
 
   # Process the .gitignore file
@@ -90,7 +90,9 @@ make_structure <- function() {
     if (!any(grepl(paste0("^", tdir, "$"), xx))) {
       cat(tdir, "\n", file = ".gitignore", append = T)
     }
-   cat("*.Rproj")
+    if (!any(grepl(paste0("^\\*.Rproj$"), xx)))
+      cat("*.Rproj", "\n", file = ".gitignore", append = T)
+
   })
 
 

@@ -36,7 +36,10 @@ Imports:
     readr,
     rstudioapi,
     pool,
-    openxlsx
+    openxlsx,
+    tools,
+    yaml,
+    digest
 Language: en-US
 VignetteBuilder: knitr
 Roxygen: list(markdown = TRUE)

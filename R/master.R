@@ -64,9 +64,12 @@ master <-
         if (!inherits(res, "try-error")) {
           fname =  file.path("logs", paste0(x, ".log"))
 
-          cat(x, "\n\n", file = fname)
-          cat(format(start), "\n", file = fname, append = T)
           cat(rep("=", 80), "\n", file = fname, append = T)
+          cat("FILENAME:        ",x, "\n", file = fname, append = T )
+          cat("START TIMESTAMP: ", format(start) , "\n" , file = fname, append = T)
+          cat("END TIMESTAMP:   ", format(end), "\n", file = fname, append = T)
+          cat(rep("=", 80), "\n", file = fname, append = T)
+
           readr::write_lines(res$stdout, fname, append = T)
           cat(rep("=", 80), "\n", file = fname, append = T)
           if (res$stderr != "") {
@@ -76,8 +79,8 @@ master <-
             readr::write_lines(gsub("\033\\[[0-9]{1,2}m", "", res$stderr),
                                fname,
                                append = T)
-            cat(rep("=", 80), "\n", file = fname, append = T)
           }
+          cat(rep("=", 80), "\n", file = fname, append = T)
           cat(
             "Status: ",
             res$status,

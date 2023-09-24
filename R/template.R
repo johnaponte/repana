@@ -17,6 +17,6 @@ insert_template <- function(){
 
   txt <- readLines(fpath)
   txt <- paste(txt, collapse  = "\n")
-  txt <- gsub("[INSERT DATE]", format(Sys.Date()),txt)
+  txt <- gsub("\\[INSERT DATE\\]", format(Sys.Date()),txt)
   rstudioapi::insertText(txt)
 }

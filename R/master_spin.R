@@ -15,6 +15,9 @@
 #' @import readr
 #' @import config
 #' @importFrom utils write.table
+#' @importFrom tools file_path_sans_ext
+#' @importFrom yaml yaml.load
+#' @importFrom digest digest
 #' @export
 #' @return a data.frame with the files run, running time and exit status
 master_spin <-
@@ -35,6 +38,46 @@ master_spin <-
         res <- ifelse(is.null(res),0,res)
         end <- Sys.time()
         elapsed = difftime(end, start)
+
+        # Define if a signature should be included
+        need_a_signature <- TRUE
+        rlx <- readLines(x)
+        headlin <- grep("\\#' ---",rlx)
+        # No well format heading
+        if (length(headlin) != 2) {
+            need_a_signature = FALSE
+        }
+        else {
+         yamlx <-yaml.load(
+           gsub("\\#' ","", readLines(x)[seq(headlin[1]+1,headlin[2]-1)]))
+         if (is.null(yamlx$signature) | ! identical(yamlx$signature,TRUE))
+             need_a_signature = FALSE
+        }
+        if (need_a_signature) {
+          # Add the signature
+          bsname <- basename(file_path_sans_ext(x))
+          lsname <- file.path(logdir,paste0(bsname,".html"))
+          hash <- digest(x, algo = "sha1", file = T)
+          if (format == "html" & file.exists(lsname)) {
+            pattern <- "(.*)(</div>)"
+            frl <- readLines(lsname)
+            sig <- paste0(
+              "<p></p>\n",
+              "<pre><code>",
+              paste0(rep("=", 80), collapse = ""),"\n",
+              "FILENAME:        ",x, "\n",
+              "SHA1:          ", hash, "\n",
+              "START TIMESTAMP: ", format(start) , "\n" ,
+              "END TIMESTAMP:   ", format(end), "\n",
+              paste0(rep("=", 80), collapse = ""),
+              "</code></pre>\n",
+              "</div>"
+            )
+            lwt <- max(grep(pattern, frl))
+            frl[lwt] <- gsub(pattern,sig,frl[lwt], perl = TRUE)
+            writeLines(frl, con = lsname)
+          }
+        }
         print(format(start))
         print(x)
         print(format(elapsed))
