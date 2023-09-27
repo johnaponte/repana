@@ -16,6 +16,7 @@ utils::globalVariables(
     "table_name",
     "installed",
     "libraries",
+    "yamalx",
     "."
   )
 )

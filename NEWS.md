@@ -1,4 +1,4 @@
-# repana 1.24.0
+# repana 2.0.0
 
 * Modified format of `NEWS.md` file to track changes to the package.
 
@@ -6,10 +6,19 @@
 
 * Allow to change the template file for a project
 
+* Simplify the template file
+
 * pkgdown is used to create a website for the package in github
 
 * Change the way timestamp is manage. It does not need anymore to include
 the start and end within the program.
+
+* Custom YAML tags now control if session info and signature are injected to the
+code
+
+* Make structure now produce 00_clean.R instead of 01_clean.R
+
+* 
 
 # repana 1.23.2
 

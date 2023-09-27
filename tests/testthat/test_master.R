@@ -18,7 +18,7 @@ test_that("The pipeline works fine", {
   file.copy(from = dir(curdir, pattern = "^[0-9][0-9].*\\.R$", full.names = T), to = tmpfile)
 
   dfres <- master()
-  expect_true(file.exists("logs/01_clean.R.log"))
+  expect_true(file.exists("logs/00_clean.R.log"))
   expect_true(file.exists("logs/02_prog_a.R.log"))
   expect_true(file.exists("logs/03_prog_b.R.log"))
   expect_true(file.exists("logs/04_prog_c.R.log"))

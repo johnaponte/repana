@@ -1,47 +1,9 @@
 #' ---
 #' title:
 #' author:
-#' date: "[INSERT DATE]"
+#' date: [INSERT DATE]
+#' sessioninfo: YES
+#' signature: YES
 #' ---
 
-#'
-#' ## Introduction
-#'
-#' Include a description or objective of this document. This template can be
-#' use with the spin utilities from RStudio.
-#' Some helpful links:
-#'
-#' * [How to compile a report from a R script](https://rmarkdown.rstudio.com/articles_report_from_r_script.html)
-#'
-#' * [Build a report based on an R script](http://yihui.name/knitr/demo/stitch)
-#'
-#' * [How to use snip](https://rpubs.com/alobo/spintutorial)
-#'
-#' * [RMarkdown tutorial](https://rmarkdown.rstudio.com/lesson-1.html)
-#'
-#' ## Setup
-#'
-#+ echo = T, result = "hide", message = F, warning = F
-starttime_ <- Sys.time()
-library(DBI)
-library(repana)
-library(plyr)
-library(tidyverse)
 
-
-#'
-#' ## Analysis
-#'
-#+ echo = T
-
-
-
-
-
-#'
-#' ## Session Info
-#'
-#+  echo = F
-cat("Execution date: " , format(starttime_ ),"\n")
-cat("Execution time: ", round(difftime(Sys.time(),starttime_,units = "min"),2), "min\n")
-print(sessionInfo(), locale = F)

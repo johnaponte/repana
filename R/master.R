@@ -22,6 +22,8 @@
 #' @import readr
 #' @import config
 #' @importFrom utils write.table
+#' @importFrom digest digest
+#' @importFrom tools file_path_sans_ext
 #' @export
 #' @return a data.frame with the files run, running time and exit status
 master <-
@@ -47,31 +49,99 @@ master <-
 
       }
     }
+    line80 <- paste0("'",paste0(rep("=",80), collapse = ""),"\n","'")
     scriptlist = dir(".", pattern = pattern, full.names = T)
     tostop = min(length(scriptlist), stop)
     reslogs <-
       lapply(scriptlist[start:tostop], function(x) {
         cat(x, "\n")
-        cat(rep("=", 80), "\n")
+        # Define if a signature and session infor should be included
+        need_a_signature <- TRUE
+        need_a_sessioninfo <- TRUE
+        rlx <- readLines(x)
+        headlin <- grep("\\#' ---", rlx)
+        # No well format heading
+        if (length(headlin) != 2) {
+          need_a_signature = FALSE
+          nedd_a_sessioninfo = FALSE
+        }
+        else {
+          yamlx <- yaml.load(
+            gsub("\\#' ", "", rlx[seq(headlin[1] + 1, headlin[2] - 1)]))
+          if (exists("yamalx$signature")) {
+            need_a_signature = identical(yamalx$signature, TRUE)
+          }
+          else {
+            need_a_signature = FALSE
+          }
+
+          if (exists("yamalx$sessioninfo")) {
+            need_a_sessioninfo = identical(yamalx$sessioninfo, TRUE)
+          }
+          else {
+            need_a_sessioninfo = FALSE
+          }
+        }
+
+
+        # Add a Session info is required
+        if (need_a_sessioninfo) {
+          rlx[length(rlx) + 1] <- paste0(line80,
+                                         "# Session Info \n",
+                                         "print(sessionInfo(), locale = F)")
+        }
+
+
+        # Add signature if required
+        if (need_a_signature) {
+          hash <- digest(x, algo = "sha1", file = T)
+          start_var <-
+            file_path_sans_ext(basename(tempfile("time")))
+          rlx[headlin[2] + 1] <- paste0("#+ echo = F\n",
+                                        start_var, "<- Sys.time()\n",
+                                        rlx[headlin[2] + 1])
+          rlx[length(rlx) + 1] <- paste0(
+            line80,
+            "# Signature ",
+            "\n",
+            "cat(",
+            "\n",
+            "'File Name: ",
+            x,
+            "\\n'," ,
+            "\n",
+            "'SHA1: ",
+            hash,
+            "\\n',",
+            "\n",
+            "'Execution start: ', format(",
+            start_var,
+            "), '\\n',",
+            "\n",
+            "'Execution time: ', round(difftime(Sys.time(),",
+            start_var,
+            ", units = 'min'),2), 'min')"
+          )
+        }
+
+        fnx <- paste0(basename(tempfile()), ".R")
+        bnx <- file_path_sans_ext(basename(x))
+        writeLines(rlx, fnx)
         start = Sys.time()
+        cat(line80)
         res <-
           try(processx::run(rscript_path,
-                            c(x, "--vainilla"),
+                            c(fnx, "--vainilla"),
                             echo = T,
                             error_on_status = FALSE))
         end <- Sys.time()
         elapsed = difftime(end, start)
+        file.remove(fnx)
         if (!inherits(res, "try-error")) {
           fname =  file.path("logs", paste0(x, ".log"))
 
-          cat(rep("=", 80), "\n", file = fname, append = T)
-          cat("FILENAME:        ",x, "\n", file = fname, append = T )
-          cat("START TIMESTAMP: ", format(start) , "\n" , file = fname, append = T)
-          cat("END TIMESTAMP:   ", format(end), "\n", file = fname, append = T)
-          cat(rep("=", 80), "\n", file = fname, append = T)
-
           readr::write_lines(res$stdout, fname, append = T)
-          cat(rep("=", 80), "\n", file = fname, append = T)
+          cat(line80, file = fname, append = T)
           if (res$stderr != "") {
             cat("Errors and Warnings messages:\n\n",
                 file = fname,
@@ -80,7 +150,7 @@ master <-
                                fname,
                                append = T)
           }
-          cat(rep("=", 80), "\n", file = fname, append = T)
+          cat(line80, file = fname, append = T)
           cat(
             "Status: ",
             res$status,
@@ -91,7 +161,7 @@ master <-
             file = fname,
             append = T
           )
-          cat(rep("=", 80), "\n")
+          cat(line80)
           cat(x, "  ", format(elapsed), "\n")
         }
         data.frame(
