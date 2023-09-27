@@ -3,7 +3,7 @@ pkgdown: 2.0.7
 pkgdown_sha: ~
 articles:
   using_repana: using_repana.html
-last_built: 2023-09-24T21:28Z
+last_built: 2023-09-27T20:01Z
 urls:
   reference: https://johnaponte.github.io/repana/reference
   article: https://johnaponte.github.io/repana/articles
