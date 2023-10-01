@@ -2,38 +2,36 @@
 % Please edit documentation in R/master.R
 \name{master}
 \alias{master}
-\title{Runs the programs}
+\title{Render programs}
 \usage{
 master(
-  pattern = "^[0-9][0-9].*\\\\.R$",
-  start = 1,
+  start = 0,
   stop = Inf,
-  logdir = config::get("dirs")$logs,
-  rscript_path
+  format = "html",
+  logdir = config::get("dirs")$logs
 )
 }
 \arguments{
-\item{pattern}{Regular expression to select the files to run}
+\item{start}{program to start}
 
-\item{start}{index of the program to start}
+\item{stop}{program to stop}
 
-\item{stop}{index of the program to stop}
+\item{format}{Format to render the programs values accepted are "pdf", "html" and "word"}
 
-\item{logdir}{directory to keep the logs of the files. By default}
-
-\item{rscript_path}{path to the \code{Rscript} file
+\item{logdir}{directory to keep the logs of the files. By default
 the entry on the \code{config.yml} \code{dirs:logs}}
 }
 \value{
 a data.frame with the files run, running time and exit status
 }
 \description{
-Run the programs specified by the pattern, in the order as the
-pattern select the files. Keep a log of the results. By default
-the pattern starting with two numbers and ending with .R is selected.
-They are run in order
+By default, all programs with the pattern "nn_" will be executed in order.
+The 'Start' and 'Stop' parameters can be used to modify the files to start or stop at
+a different number.
 }
 \details{
-The program add (or create if not exists) the files run, time of execution
-and exit status in the file master.log of the directory logs.
+The files are treated as \emph{snip} files for rmarkdown and render in the log
+directory, with the format specified in the \emph{format} parameter.
+
+The default the log directory is configured in the config.yml file.
 }

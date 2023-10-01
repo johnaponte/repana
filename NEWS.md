@@ -16,9 +16,13 @@ the start and end within the program.
 * Custom YAML tags now control if session info and signature are injected to the
 code
 
+* Master now works by default with the spin option.  User format txt option for
+only txt output
+
 * Make structure now produce 00_clean.R instead of 01_clean.R
 
-* 
+* Simplified pattern manager for programs. Now all programs with format nn_ are
+included by default in the list of programs executed by master
 
 # repana 1.23.2
 

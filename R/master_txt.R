@@ -1,39 +1,70 @@
-# This master file runs all files as spin files
-# 20200513 by JJAV
+# This master file runs all files
+# 20190617 by JJAV
 # # # # # # # # # # # # # # # # # # # # #
 
-#' Render all programs as spin code
+#' Runs the programs
 #'
-#' Render the programs specified by the pattern as SPIN reports
-#
+#' Run the programs specified by the pattern, in the order as the
+#' pattern select the files. Keep a log of the results. By default
+#' the pattern starting with two numbers and ending with .R is selected.
+#' They are run in order
+#'
+#' The program add (or create if not exists) the files run, time of execution
+#' and exit status in the file master.log of the directory logs.
+#'
+#' WARNING: This is a legacy program. Use master instead.
+#'
 #' @param pattern Regular expression to select the files to run
 #' @param start index of the program to start
 #' @param stop index of the program to stop
 #' @param logdir directory to keep the logs of the files. By default
+#' @param rscript_path path to the \code{Rscript} file
 #' the entry on the \code{config.yml} \code{dirs:logs}
-#' @param format Format to render the report. values accepted are "pdf", "html" and "word"
+#' @import processx
 #' @import readr
 #' @import config
 #' @importFrom utils write.table
-#' @importFrom tools file_path_sans_ext
-#' @importFrom yaml yaml.load
 #' @importFrom digest digest
+#' @importFrom tools file_path_sans_ext
 #' @export
 #' @return a data.frame with the files run, running time and exit status
-master_spin <-
+master_txt <-
   function(pattern = "^[0-9][0-9].*\\.R$",
            start = 1,
            stop = Inf,
            logdir = config::get("dirs")$logs,
-           format = "html") {
+           rscript_path) {
+
+    # Identify the Rscript program to use
+    if (missing(rscript_path)) {
+      binpath <- file.path(R.home(), "bin")
+      if (file.exists(file.path(binpath, "Rscript"))) {
+        rscript_path = file.path(binpath, "Rscript")
+      }
+      else {
+        if (file.exists(file.path(binpath, "Rscript.exe"))) {
+          rscript_path = file.path(
+            binpath,
+            "Rscript.exe")
+          }
+        else {
+          rscript_path = "Rscript"
+        }
+
+      }
+    }
+    # line80 to reports
+    line80 <- paste0(rep("=",80), collapse = "")
+
+    # List of files to process
     scriptlist = dir(".", pattern = pattern, full.names = T)
     tostop = min(length(scriptlist), stop)
 
+    # Process the files
     reslogs <-
       lapply(scriptlist[start:tostop], function(x) {
         cat(x, "\n")
-
-        # Define if a signature and session infor should be included
+        # Define if a signature and session info should be included
         need_a_signature <- TRUE
         need_a_sessioninfo <- TRUE
         rlx <- readLines(x)
@@ -64,29 +95,23 @@ master_spin <-
 
         # Add a Session info is required
         if (need_a_sessioninfo) {
-          rlx[length(rlx) + 1] <- paste0("#' ## Session Info ",
-                                         "\n",
-                                         "#+ echo = F ",
-                                         "\n",
-                                         "print(sessionInfo(), locale = F)")
+          rlx[length(rlx) + 1] <- paste0(
+                                         "\n# Session Info ####\n",
+                                         "cat('\\n# Session Info\\n')\n",
+                                         "print(sessionInfo(), locale = F)\n")
         }
 
 
         # Add signature if required
         if (need_a_signature) {
           hash <- digest(x, algo = "sha1", file = T)
-          start_var <-
-            file_path_sans_ext(basename(tempfile("time")))
+          start_var <- file_path_sans_ext(basename(tempfile("time")))
           rlx[headlin[2] + 1] <- paste0("#+ echo = F\n",
                                         start_var, "<- Sys.time()\n",
                                         rlx[headlin[2] + 1])
           rlx[length(rlx) + 1] <- paste0(
-            "#' ## Signature ",
-            "\n",
-            "#+ echo = F ",
-            "\n",
-            "cat(",
-            "\n",
+            "\n# Signature ####\n ",
+            "cat('\\n# Signature\\n',\n",
             "'File Name: ",
             x,
             "\\n'," ,
@@ -109,27 +134,36 @@ master_spin <-
         bnx <- file_path_sans_ext(basename(x))
         writeLines(rlx, fnx)
         start = Sys.time()
+        cat(line80,"\n")
         res <-
-          try(
-            render_report(
-              fnx,
-              format,
-              logdir,
-              output_file = file.path(logdir, bnx)))
-        file.remove(fnx)
-        res <- ifelse(is.null(res), 0, res)
+          try(processx::run(rscript_path,
+                            c(fnx, "--vainilla --verbose"),
+                            echo = T,
+                            error_on_status = FALSE))
         end <- Sys.time()
         elapsed = difftime(end, start)
-
-        print(format(start))
-        print(x)
-        print(format(elapsed))
-        print(ifelse(inherits(res, "try-error") | res != 0, "FAIL", ":-)"))
+        #file.remove(fnx)
+        if (!inherits(res, "try-error")) {
+          fname =  file.path(logdir, paste0(bnx, ".log"))
+          readr::write_lines(res$stdout, fname, append = T)
+          if (res$stderr != "") {
+            cat(line80,"\n", file = fname, append = T)
+            cat("Errors and Warnings messages:\n\n",
+                file = fname,
+                append = T)
+            # remove the very offensive ANSI color codes for tidyverse messages
+            readr::write_lines(gsub("\033\\[[0-9]{1,2}m", "", res$stderr),
+                               fname,
+                               append = T)
+          }
+          cat(line80,"\n", file = fname, append = T)
+        }
         data.frame(
           timestart = format(start),
           script = x,
           elapsed = format(elapsed),
-          comments = ifelse(inherits(res, "try-error") | res != 0, "FAIL", ":-)")
+          comments = ifelse(inherits(res, "try-error") |
+                              res$status != 0, "FAIL", ":-)")
         )
       })
 
@@ -138,10 +172,10 @@ master_spin <-
     suppressWarnings(
       write.table(
         dfres,
-        "logs/master.log",
+        file.path(logdir, "master.log"),
         row.names = F,
         append = T,
-        col.names = !file.exists("logs/master.log"),
+        col.names = !file.exists(file.path(logdir, "master.log")),
         sep = "\t"
       )
     )
