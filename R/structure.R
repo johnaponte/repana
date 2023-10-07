@@ -65,7 +65,6 @@ make_structure <- function() {
 
   }
 
-
   if (!file.exists("_template_spin.R")) {
     fpath <- system.file("templates", "template_spin.txt", package="repana")
     file.copy(fpath,"_template.txt")
@@ -84,16 +83,17 @@ make_structure <- function() {
   lapply(in_gitignore, function(x) {
     tdir <- trimws(config::get("dirs")[[x]], "both")
     if (length(tdir) == 0) {
-      stop(x,
+      warning(x,
            " not defined in dirs. check the config.yml file\n")
     }
     if (!any(grepl(paste0("^", tdir, "$"), xx))) {
       cat(tdir, "\n", file = ".gitignore", append = T)
     }
-    if (!any(grepl(paste0("^\\*.Rproj$"), xx)))
-      cat("*.Rproj", "\n", file = ".gitignore", append = T)
-
   })
+  if (!any(grepl(paste0("^\\*\\.Rproj$"), xx))){
+      cat("*.Rproj", "\n", file = ".gitignore", append = T)
+  }
+
 
 
   # Make the 00_clean.R file
