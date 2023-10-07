@@ -1,4 +1,4 @@
-Name: Insert Template
-Description: Insert a Template to be use with spin capabilities of RStudio, master() and master_spin()
+Name: Repana Insert Template
+Description: Insert a Repana template to document programs,
 Binding: insert_template
 Interactive: false

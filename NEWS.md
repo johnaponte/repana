@@ -33,6 +33,8 @@ included by default in the list of programs executed by master
 * Remove unused dependencies. Check that report is render only if pandoc
 is available. Test for render reports only if pandoc is available
 
+* Fix the problem of creating repeated *.Rproj in the .gitignore file
+
 #repana 1.23.0
 
 * The confirm_libraries function has been removed. It was not really
