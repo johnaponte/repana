@@ -10,8 +10,7 @@
 insert_template <- function(){
   # This function is not included in the unit test
   fpath <- trimws(config::get("template"))
-  if (! file.exists(fpath)){
-    "Specified template not found. Using default template"
+  if (! identical(file.exists(fpath),TRUE)){
     fpath <- system.file("templates", "template_spin.txt", package="repana")
   }
 
