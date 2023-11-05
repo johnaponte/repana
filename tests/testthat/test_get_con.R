@@ -1,8 +1,12 @@
 # Test to get the connection
 # 20181123 by JJAV
 # # # # # # # # # # # # # # #
-library(DBI)
+
+# This requires the database package installed  (duckdb)
+require(DBI)
+require(duckdb)
 context("Test get_con")
+
 
 test_that("get_con works fine" , {
   curdir  = getwd()

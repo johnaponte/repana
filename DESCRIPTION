@@ -25,6 +25,7 @@ Suggests:
     knitr,
     RSQLite,
     RPostgres,
+    duckdb,
     pacman
 Imports: 
     config,

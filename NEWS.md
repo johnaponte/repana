@@ -24,6 +24,9 @@ only txt output
 * Simplified pattern manager for programs. Now all programs with format nn_ are
 included by default in the list of programs executed by master
 
+* Default db changed from SQLite to duckdb as duckdb have similar functionality,
+but is more R friendly and preserver factors and dates (see https://duckdb.org/)
+
 # repana 1.23.2
 
 * Fix a bug if an output_file is included as parameter in the render_function

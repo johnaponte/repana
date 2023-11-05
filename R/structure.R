@@ -55,15 +55,17 @@ make_structure <- function() {
       "   - reports\n",
       "   - logs\n",
       " defaultdb:\n",
-      "   package: RSQLite\n",
-      "   dbconnect: SQLite\n",
-      '   dbname: ":memory:"\n',
+      "   package: duckdb\n",
+      "   dbconnect: duckdb\n",
+      '   dbdir: ":memory:"\n',
+      '   read_only: FALSE\n',
       " template:\n",
       "   _template.txt\n",
       file = "config.yml"
     )
 
   }
+
 
   if (!file.exists("_template_spin.R")) {
     fpath <- system.file("templates", "template_spin.txt", package="repana")
