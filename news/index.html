@@ -24,6 +24,7 @@
 <li class="nav-item dropdown">
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
+    <a class="dropdown-item" href="../articles/index.html">Introduction to repana</a>
     <a class="dropdown-item" href="../articles/using_repana.html">Using repana</a>
   </div>
 </li>
@@ -62,6 +63,7 @@
 <li><p>Master now works by default with the spin option. User format txt option for only txt output</p></li>
 <li><p>Make structure now produce 00_clean.R instead of 01_clean.R</p></li>
 <li><p>Simplified pattern manager for programs. Now all programs with format nn_ are included by default in the list of programs executed by master</p></li>
+<li><p>Default db changed from SQLite to duckdb as duckdb have similar functionality, but is more R friendly and preserver factors and dates (see <a href="https://duckdb.org/" class="external-link uri">https://duckdb.org/</a>)</p></li>
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="1.23.2" id="repana-1232">repana 1.23.2<a class="anchor" aria-label="anchor" href="#repana-1232"></a></h2><p class="text-muted">CRAN release: 2021-09-20</p>
