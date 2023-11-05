@@ -4,7 +4,7 @@ pkgdown_sha: ~
 articles:
   index: index.html
   using_repana: using_repana.html
-last_built: 2023-11-05T11:23Z
+last_built: 2023-11-05T11:32Z
 urls:
   reference: https://johnaponte.github.io/repana/reference
   article: https://johnaponte.github.io/repana/articles
