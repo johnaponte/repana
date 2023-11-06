@@ -14,11 +14,6 @@ knitr::opts_chunk$set(
 )
 ```
 
-```{r setup}
-library(repana)
-```
-
-
 
 Reproducible research is a crucial aspect of the scientific process, especially in data science. It ensures that the same inputs, including data, libraries, and user programs, consistently produce the same results or artifacts. This not only enhances the credibility of research but also streamlines collaboration and makes it easier to verify and build upon previous work. Repana facilitates the pursuit of reproducible research.
 
