@@ -1,158 +1,48 @@
-## Introduction
+# Introduction to repana (Reproducble Analysis in R)
 
-There are several utilities in the R ecosystem for reproducible research. The 
-package repana (for Reproducible Analysis) help in having a common directory 
-structure where to save the files that should be consider part of the main stream
-of production, and files that are products of the main stream as well as modified files 
-no longer part of the main stream but need to be kept such as re-formatted reports or presentations.
+Reproducible research is a crucial aspect of the scientific process, especially in data science. It ensures that the same inputs, including data, libraries, and user programs, consistently produce the same results or artifacts. This not only enhances the credibility of research but also streamlines collaboration and makes it easier to verify and build upon previous work. There are several options in R to achieve reproducible research and repanafacilitates the pursuit of reproducible research.
 
-The aspiration of this package is that you can set up an analysis with the `make_structure()` function,
-have access to the database using `get_con()` function, have your tables in the 
-database documented with the `update_table()` function, and reproduce a complete analysis
-by running the  `master()` function
+## What is Repana?
 
-## Directory Structure
+Repana is an R package designed to simplify the process of conducting reproducible research. It provides a structured framework for managing your R projects, ensuring that your research artifacts, such as new datasets, tables, figures, listings, and reports, remain consistent across runs. Repana's opinionated structure can be customized to fit your specific needs, but its core principles revolve around the concept of reproducibility.
 
-The function `make_structure()` reads the `config.yml` files and ensure all entries on the
-`dirs` section exists. The `config.yml` created by default will produce the 
-following directories for the data, functions, database, logs, reports and handmade 
-entries of the `config.yml`:
+## The Core Features of Repana
 
-* ___data__ to keep all data sources need to reproduce the analysis. 
+1. **Structured Workflow:**
+   Repana enforces an opinionated structure for your project. The function `make_strucutre()` helps with the creation of this structure. Standardize project structures and documentation help to understand the workflow and facilitates collaboration
+   
+2. **Master Function:**
+   The heart of Repana is the `master()` function. This function executes programs in the working directory whose names start with two numbers and an underscore (e.g., `00_xxx`, `01_xxx`, `02_xxx`, etc.) in the intended order. This automated execution ensures that your research workflow is standardized and can be easily reproduced. The R scripts are compiled as scripts to a notebook using rmarkdown. This help the programmer to concentrate on the programming while allow to document the code and produce HTML, PDF or MS Word files to document the execution of the program. Each program executed in an independent environment which prevent unintended interference between programs, ensuring that your research remains truly reproducible
 
-* ___functions__ to keep all functions programmed for the analysis
-    
-* __database__ to keep all secondary datasets and objects
-    
-* __logs__ to keep the log of the scripts
-    
-* __reports__ to keep all secondary analysis reports and sheets
-    
-* __handmade__ to keep all modified files and reports that should be kept
+3. **Artifact Management:**
+   Repana provides a function `clean_structure()`to be included in the first program (usually `00_clean.R`) to delete and recreate the directories where artifacts are saved. This action guarantees that the artifacts presented in the directories are created by the current run, eliminating the risk of using outdated versions from previous runs.
 
-The directories can be used in your programs by the `get_dirs()` function.
+5. **Database Configuration:**
+   In the realm of data science, databases are often a crucial component of research. Repana allows you to configure databases within your project, making it easier to manage and access data sources.
 
-    
-The information in `data`, `functions`, `handmade` as well as the scripts in the root 
-directory should be preserved as they are the core of your analysis.
-The files in `logs`, `reports` and `database` are created and recreated as
-result of your analysis' scripts. Those are the results of your analysis. 
+6. **Git Friendliness:**
+   Repana is GIT-friendly. It helps you keep track of source information and user programs without including the generated artifacts in the GIT repository. This ensures that your version control system focuses on the essential aspects of your research.
 
-The function `clean_structure()`clean those directories included in the list `clean_before_new_analysis` 
-so a new analysis could be re-run without worries that new
-and old results are mixed. If you use `git`, those directories are
-candidates to be excluded from the control version by having them in the `.gitignore` file.
-(`make_structure()` take care of create a `.gitignore` if it does not exist or include those
-directories if they have not been yet included).
+## How to Get Started with Repana
 
-The function `make_structure()` writes a `config.yml` if it does not exists. This file is used by the
-`config::get()` function. It contains a the following entries under the default: tree
+To get started with Repana, follow these steps:
 
-__dirs:__ to define the directories that make_structure will maintain. It have
-the entry values for `data`, `functions`, `database`, `reports`, `logs`, `handmade`
-directories. If you prefer other options than the defaults values you may change
-it. You may access those directories in your programs using `get_dirs()`
-Note that the name for `data` and `function` does not have a underscore but by default
-the values are `_data` and `_function` respectively. `make_structure` will create the paths
-with the value of the entries but you access them in your program with the name of the entry.
-This will provide the freedom to direct the real path of the directory to any place you need.
-
-
-__clean_before_new_analysis:__ to define the list of directories that should be cleaned every time you want to repeat
-the analysis from zero. This directories are included in the `.gitignore`
-
-__defaultdb:__ is written with the parameters for a `RSQLite SQLite` driver
-
-You may add other entries that your analysis may requires. The `config.yml` 
-itself should also be included in your `.gitignore` file as it is
-something that change from system to system (i.e. driver parameters) so you should
-include in the documentation of your analysis what entries should be defined so you
-can reproduce the analysis in other machine.
-
-## The configuration of database
-
-DBI and Pool connections are used as a way to keep data as well as results in a 
-database system. You must provide, at least, values for the `package` and `dbconnection` entries corresponding
-to the package that host the dbConnection and the name of the dbConnection function. Notice entry names are lowercase.
-The rest of the entries must correspond for parameters for your driver connection or pool connection.
-
-Example to use `RSQLite` with a `results.db` file in the database directory
-
-```yaml
-  defaultdb:
-    package: RSQLite
-    dbconnect: SQLite
-    dbname: dbname/results.db
-
-```
-
-Example to use `RPostgres`
-
-```yaml
-  defaultdb:
-    package: RPostgres
-    dbconnection: Postgres
-    dbname: testdb
-    host: localhost
-    port: 5432
-    user: username
-    password: password
-
-```
-
-You can define several configuration to use different databases in the same
-analysis, but the `defaultdb` will be used by  default for the `update_table()` function.
-
-The function `update_table` will save a data.frame into the database, and will
-keep a log in the `log_table` table with the timestamps the file was updated
-in the database. The `log_table` keep a record of when was the table included in
-the database and a comment that will help to trace the origin. You may include the
-date data was obtained or the source of the data.
-
-`update_table(p_con,"iris", "from system)`
-
-## The master function
-
-The `master(pattern, start, stop, logdir, rscript_path)` function execute in a plain vanilla R process each one of the files
-identified by the pattern. By default use the pattern is `"^[0-9][0-9].*\\.R$"`, which include all files like `01_read_data.R`, `02_process_data.R`, `03_analysis_data.R`, `04_make_report.R`
-but not `report1.rmd`, `exploratory.R` etc..
-Files are run on the order starting from the first but if for any reason you need to omit the first files you may skip them with the `start` parameter.
-
-`logdir` is the directory for the logs, by default `get_dirs()$logs`
-
-`rscript_path` is the full path to the `Rscript` program which is at the end the one that process the `R` file. 
-The current default is for a OS system. But implementation for Linux and Windows will soon be implemented.
-
-The master function use functions from the `processx` package.
-
-## The config.yml file
-
-Here is an example of the `config.yml` created by `make_structure()`
-
-```*.yml
-default:
-  dirs:
-    data: _data
-    functions: _functions
-    handmade: handmade
-    database: database
-    reports: reports
-    logs: logs
-  clean_before_new_analysis: 
-    - database
-    - reports
-    - logs
-  defaultdb:
-    package: RSQLite
-    dbconnect: SQLite
-    dbname: ":memory:"
-    driver:  /usr/local/lib/libsqlite3odbc.dylib 
-    database: database/results.db
-```
-
-## Set-up
-
-You may download the package from git-hub. Within R you may use `devtools::install_github()` as:
-
+1. **Installation:** You can install Repana from CRAN using `install.packages("Repana")` or if you want to use the developing version from git-hub
 `devtools::install_github("johnaponte/repana", build_manual = T, build_vignettes = T)`
 
+2. **Project Setup:** Create a new project and use `repana::make_structure()` to construct the opinionated structure required by Repana. Customize it as needed to fit your research requirements modifying the `config.yml`file.
+
+3. **Programming:** Write your R programs, ensuring that they follow the naming conventions (e.g., `00_xxx`, `01_xxx`, etc.). If using the RStudio IDE use the `Repana insert template` addin to include a consistent head documentation for your project. Options in the head template allows to include a timestamp and signature to the created document and the packages used in the execution of each program.
+
+4. **Artifact Management:** Ensure your first program include the  `clean_stucture()`function. By default, the make_structure() function creates one for you in the `00_clean.R`. The execution of `clean_structure` will re-create all the directories where dependencies are saved. This directories are defined in the `config.yml` file
+
+5. **Execute Programs:** Utilize the `master()` function to run your programs in the intended order, keeping your research consistent and reproducible. By default `master()` executes all programs in the default directory that follow the naming convention, but you may use the start and stop options to execute only a set of the programs. You may also use the `format` option to modify the output from HTML to PDF or MS_DOS
+
+6. **Documentation and Collaboration:** Document your work using the provided templates and collaborate seamlessly with your team or the broader research community.
+
+For more information see:
+
+- Creating a Repana structure
+- Database configuration
+- Modifying the template
+- Creating reports
