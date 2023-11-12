@@ -36,13 +36,13 @@ To get started with Repana, follow these steps:
 
 4. **Artifact Management:** Ensure your first program include the  `clean_stucture()`function. By default, the make_structure() function creates one for you in the `00_clean.R`. The execution of `clean_structure` will re-create all the directories where dependencies are saved. This directories are defined in the `config.yml` file
 
-5. **Execute Programs:** Utilize the `master()` function to run your programs in the intended order, keeping your research consistent and reproducible. By default `master()` executes all programs in the default directory that follow the naming convention, but you may use the start and stop options to execute only a set of the programs. You may also use the `format` option to modify the output from HTML to PDF or MS_DOS
+5. **Execute Programs:** Utilize the `master()` function to run your programs in the intended order, keeping your research consistent and reproducible. By default `master()` executes all programs in the default directory that follow the naming convention, but you may use the start and stop options to execute only a set of deve
 
 6. **Documentation and Collaboration:** Document your work using the provided templates and collaborate seamlessly with your team or the broader research community.
 
 For more information see:
 
-- Creating a Repana structure
+- [Defining the structure](structure.html)
 - Database configuration
 - Modifying the template
 - Creating reports

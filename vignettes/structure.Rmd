@@ -1,0 +1,28 @@
+---
+title: "Repana Structure"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Repana Structure}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+## Introduction
+
+Repana is an opinionated framework. It means that the structure of the project
+must be defined so the project knows where to save different type of files.
+The structure of Repana is defined by the `config.yml' file. The function 
+`repana::make_structure()` helps to construct the directory structure. If there
+is no `config.yml', `make_structure()` provide one to you.
+
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(repana)
+```
