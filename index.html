@@ -44,6 +44,12 @@
 <li class="nav-item">
   <a class="nav-link" href="reference/index.html">Reference</a>
 </li>
+<li class="nav-item dropdown">
+  <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
+  <div class="dropdown-menu" aria-labelledby="dropdown-articles">
+    <a class="dropdown-item" href="articles/structure.html">Repana Structure</a>
+  </div>
+</li>
 <li class="nav-item">
   <a class="nav-link" href="news/index.html">Changelog</a>
 </li>
@@ -95,12 +101,12 @@
 <li><p><strong>Project Setup:</strong> Create a new project and use <code><a href="reference/make_structure.html">repana::make_structure()</a></code> to construct the opinionated structure required by Repana. Customize it as needed to fit your research requirements modifying the <code>config.yml</code>file.</p></li>
 <li><p><strong>Programming:</strong> Write your R programs, ensuring that they follow the naming conventions (e.g., <code>00_xxx</code>, <code>01_xxx</code>, etc.). If using the RStudio IDE use the <code>Repana insert template</code> addin to include a consistent head documentation for your project. Options in the head template allows to include a timestamp and signature to the created document and the packages used in the execution of each program.</p></li>
 <li><p><strong>Artifact Management:</strong> Ensure your first program include the <code>clean_stucture()</code>function. By default, the make_structure() function creates one for you in the <code>00_clean.R</code>. The execution of <code>clean_structure</code> will re-create all the directories where dependencies are saved. This directories are defined in the <code>config.yml</code> file</p></li>
-<li><p><strong>Execute Programs:</strong> Utilize the <code><a href="reference/master.html">master()</a></code> function to run your programs in the intended order, keeping your research consistent and reproducible. By default <code><a href="reference/master.html">master()</a></code> executes all programs in the default directory that follow the naming convention, but you may use the start and stop options to execute only a set of the programs. You may also use the <code>format</code> option to modify the output from HTML to PDF or MS_DOS</p></li>
+<li><p><strong>Execute Programs:</strong> Utilize the <code><a href="reference/master.html">master()</a></code> function to run your programs in the intended order, keeping your research consistent and reproducible. By default <code><a href="reference/master.html">master()</a></code> executes all programs in the default directory that follow the naming convention, but you may use the start and stop options to execute only a set of deve</p></li>
 <li><p><strong>Documentation and Collaboration:</strong> Document your work using the provided templates and collaborate seamlessly with your team or the broader research community.</p></li>
 </ol>
 <p>For more information see:</p>
 <ul>
-<li>Creating a Repana structure</li>
+<li><a href="structure.html">Defining the structure</a></li>
 <li>Database configuration</li>
 <li>Modifying the template</li>
 <li>Creating reports</li>
