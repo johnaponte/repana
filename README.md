@@ -42,7 +42,7 @@ To get started with Repana, follow these steps:
 
 For more information see:
 
-- [Defining the structure](reference/structure.html)
+- [Defining the structure](articles/structure.html)
 - Database configuration
 - Modifying the template
 - Creating reports
