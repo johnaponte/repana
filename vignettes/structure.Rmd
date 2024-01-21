@@ -5,18 +5,21 @@ author: "John J Aponte"
 date:  2024-01-21
 vignette: >
   %\VignetteIndexEntry{Repana Structure}
-  %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
+  %\VignetteEngine{knitr::rmarkdown}
+editor_options: 
+  markdown: 
+    wrap: 72
 ---
 
 ## Introduction
 
-Repana is an opinionated framework. It means that the structure of the project
-must be defined so the project knows where to save different type of files.
-The structure of Repana is defined by the `config.yml' file. The function 
-`repana::make_structure()` helps to construct the directory structure. If there
-is no `config.yml', `make_structure()` provide one to you.
-
+Repana is an opinionated framework, meaning that the project's structure
+must be predefined to determine where different types of files are
+stored. The structure of Repana is governed by the `config.yml` file,
+and the `repana::make_structure()` function aids in constructing the
+directory layout. If no `config.yml` is present, `make_structure()`
+generates one.
 
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
@@ -25,6 +28,124 @@ knitr::opts_chunk$set(
 )
 ```
 
-```{r setup}
-library(repana)
+## Default structure
+
+The default structure is established using the `make_structure()`
+function, which creates a config.yml file with predefined items for the
+Repana package.
+
+```{yaml}
+default:
+  dirs:
+    data: _data
+    functions: _functions
+    handmade: handmade
+    database: database
+    reports: reports
+    logs: logs
+  clean_before_new_analysis:
+    - database
+    - reports
+    - logs
+  defaultdb:
+    package: duckdb
+    dbconnect: duckdb
+    dbname: ":memory:"
+    read_only: FALSE
+  template:
+    _template.txt
 ```
+
+### Section dirs:
+
+The `dirs` section defines the directories that the structure should
+maintain. Each entry consists of a nickname for the directory and its
+corresponding physical location. The `get_dirs()` function returns the
+physical location within programs.
+
+For example, using the default definition, get_dirs("data") returns
+"\_data". This abstraction allows program logic to remain separate from
+the actual physical directory names, enabling different users to use the
+same programs without modification, even if the physical locations
+differ.
+
+By default, six directories are defined, each serving a specific
+purpose:
+
+| Entry.    | Purpouse                                                       |
+|---------------|---------------------------------------------------------|
+| data      | Input data to the project                                      |
+| functions | Functions used in the project                                  |
+| handmade  | Files created not using programs in the project                |
+| database  | Database and other secondary files created by the project      |
+| reports   | Reports, graphs, files and other output created by the project |
+| logs      | Log of executed files                                          |
+
+: Directories defined in config.yml
+
+Note: The handmade directory is crucial for maintaining the spirit of
+_reproducible analysis_. While all project output should ideally stem from
+program actions on inputs, the handmade directory serves as a space for
+files modified by hand or kept for reference.
+
+### Section clean_before_new_analysis:
+
+As mentioned earlier, the essence of _reproducible analysis_ involves
+being able to reproduce project outputs with the same inputs. To ensure
+outputs are produced by a new analysis, it is recommended to delete
+existing outputs before recreating them. The clean_before_new_analysis
+section specifies the directories deleted before a new analysis. The
+make_structure() function updates the .gitignore file to exclude these
+directories from git version control.
+
+WARNING: The clean_structure() function will delete directories listed
+under the clean_before_new_analysis entry.
+
+### Section defaultdb:
+
+This section defines the arguments needed to create a connection with a
+database using the DBI system. Multiple connections can be defined under
+new entries. The `get_con()` function establishes a connection based on
+the information in the config.yml file. Refer to the [Database
+configuration]
+(<https://johnaponte.github.io/repana/articles/database.html> for more
+information) Vignette for detailed instructions on setting up and using
+the connection.
+
+### Section template:
+
+If using the RStudio IDE, the package installs an addin named "Repana
+insert template," which inserts a default template for program
+documentation. This default template can be modified, and if a different
+file is used, the template section informs the system of its location.
+See the [Modifying the template](https://johnaponte.github.io/repana/articles/template.html)
+on how to use and modify the template.
+
+## Workflow
+
+A workflow using GitHub and repana in Rstudio would be
+
+  1. Create the project in GitHub
+  
+  2. Update the README.md file
+  
+  3. Copy the URL link of the project
+  
+  4. In Rstudio, create a new project from "Version Control", Select Git and
+fill in the URL link of the project and the location
+
+  5. Once the project is created, run `repana::make_structure()` function
+
+Your new project is ready.
+
+  6. Share the config.yml file to your collaborators so they can adapt to their
+  local conditions of the project. The config.yml is included in .gitignore and
+  not uploaded to GitHub to allow each collaborator to have its own definition.
+
+*WARNING* by default, the `_data` directory is not include in the .gitignore file. 
+Consider to include it if the `_data` directory contains sensitive 
+information that should not be uploaded to GitHub. This directory may be 
+shared between collaborators using a different method.
+
+For more information, see the 
+[Repana Documentation](https://johnaponte.github.io/repana/).
