@@ -91,7 +91,7 @@ Aponte</h4>
 </h2>
 <p>Repana is an opinionated framework, meaning that the project’s
 structure must be predefined to determine where different types of files
-are stored. The structure of Repana is governed by the
+are stored. The structure of <strong>repana</strong> is governed by the
 <code>config.yml</code> file, and the
 <code><a href="../reference/make_structure.html">repana::make_structure()</a></code> function aids in constructing the
 directory layout. If no <code>config.yml</code> is present,
@@ -103,25 +103,25 @@ directory layout. If no <code>config.yml</code> is present,
 <p>The default structure is established using the
 <code><a href="../reference/make_structure.html">make_structure()</a></code> function, which creates a config.yml file
 with predefined items for the Repana package.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">default</span><span class="kw">:</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">dirs</span><span class="kw">:</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">data</span><span class="kw">:</span><span class="at"> _data</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">functions</span><span class="kw">:</span><span class="at"> _functions</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">handmade</span><span class="kw">:</span><span class="at"> handmade</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">database</span><span class="kw">:</span><span class="at"> database</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">reports</span><span class="kw">:</span><span class="at"> reports</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">logs</span><span class="kw">:</span><span class="at"> logs</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">clean_before_new_analysis</span><span class="kw">:</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> database</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> reports</span></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> logs</span></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">defaultdb</span><span class="kw">:</span></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">package</span><span class="kw">:</span><span class="at"> duckdb</span></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">dbconnect</span><span class="kw">:</span><span class="at"> duckdb</span></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">dbname</span><span class="kw">:</span><span class="at"> </span><span class="st">":memory:"</span></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">read_only</span><span class="kw">:</span><span class="at"> </span><span class="ch">FALSE</span></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">template</span><span class="kw">:</span></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="at">    _template.txt</span></span></code></pre></div>
+<pre><code>default:
+  dirs:
+    data: _data
+    functions: _functions
+    handmade: handmade
+    database: database
+    reports: reports
+    logs: logs
+  clean_before_new_analysis:
+    - database
+    - reports
+    - logs
+  defaultdb:
+    package: duckdb
+    dbconnect: duckdb
+    dbname: ":memory:"
+    read_only: FALSE
+  template:
+    _template.txt</code></pre>
 <div class="section level3">
 <h3 id="section-dirs">Section dirs:<a class="anchor" aria-label="anchor" href="#section-dirs"></a>
 </h3>
@@ -186,23 +186,24 @@ space for files modified by hand or kept for reference.</p>
 involves being able to reproduce project outputs with the same inputs.
 To ensure outputs are produced by a new analysis, it is recommended to
 delete existing outputs before recreating them. The
-clean_before_new_analysis section specifies the directories deleted
-before a new analysis. The make_structure() function updates the
-.gitignore file to exclude these directories from git version
-control.</p>
-<p>WARNING: The clean_structure() function will delete directories
-listed under the clean_before_new_analysis entry.</p>
+<code>clean_before_new_analysis</code> section specifies the directories
+deleted before a new analysis. The <code><a href="../reference/make_structure.html">make_structure()</a></code>
+function updates the .gitignore file to exclude these directories from
+git version control.</p>
+<p><strong>WARNING</strong>: The <code><a href="../reference/clean_structure.html">clean_structure()</a></code> function
+will delete all directories listed under the
+<code>clean_before_new_analysis</code> entry.</p>
 </div>
 <div class="section level3">
 <h3 id="section-defaultdb">Section defaultdb:<a class="anchor" aria-label="anchor" href="#section-defaultdb"></a>
 </h3>
 <p>This section defines the arguments needed to create a connection with
-a database using the DBI system. Multiple connections can be defined
-under new entries. The <code><a href="../reference/get_con.html">get_con()</a></code> function establishes a
-connection based on the information in the config.yml file. Refer to the
-[Database configuration] (<a href="https://johnaponte.github.io/repana/articles/database.html" class="uri">https://johnaponte.github.io/repana/articles/database.html</a>
-for more information) Vignette for detailed instructions on setting up
-and using the connection.</p>
+a database using the <code>DBI</code> system. Multiple connections can
+be defined under new entries. The <code><a href="../reference/get_con.html">get_con()</a></code> function
+establishes a connection based on the information in the config.yml
+file. Refer to the <a href="https://johnaponte.github.io/repana/articles/database.html">Database
+configuration</a> Vignette for detailed instructions on setting up and
+using database connections.</p>
 </div>
 <div class="section level3">
 <h3 id="section-template">Section template:<a class="anchor" aria-label="anchor" href="#section-template"></a>
@@ -231,14 +232,14 @@ Git and fill in the URL link of the project and the location</p></li>
 <p>Your new project is ready.</p>
 <ol start="6" style="list-style-type: decimal">
 <li>Share the config.yml file to your collaborators so they can adapt to
-their local conditions of the project. The config.yml is included in
-.gitignore and not uploaded to GitHub to allow each collaborator to have
-its own definition.</li>
+local conditions. The config.yml is included in .gitignore and not
+uploaded to GitHub to allow each collaborator to have its own
+definition.</li>
 </ol>
-<p><em>WARNING</em> by default, the <code>_data</code> directory is not
-include in the .gitignore file. Consider to include it if the
+<p><strong>WARNING</strong> by default, the <code>_data</code> directory
+is not include in the .gitignore file. Consider to include it if the
 <code>_data</code> directory contains sensitive information that should
-not be uploaded to GitHub. This directory may be shared between
+not be uploaded to GitHub. This directory could be shared between
 collaborators using a different method.</p>
 <p>For more information, see the <a href="https://johnaponte.github.io/repana/">Repana
 Documentation</a>.</p>
