@@ -16,7 +16,7 @@ editor_options:
 
 Repana is an opinionated framework, meaning that the project's structure
 must be predefined to determine where different types of files are
-stored. The structure of Repana is governed by the `config.yml` file,
+stored. The structure of **repana** is governed by the `config.yml` file,
 and the `repana::make_structure()` function aids in constructing the
 directory layout. If no `config.yml` is present, `make_structure()`
 generates one.
@@ -34,7 +34,7 @@ The default structure is established using the `make_structure()`
 function, which creates a config.yml file with predefined items for the
 Repana package.
 
-```{yaml}
+```
 default:
   dirs:
     data: _data
@@ -93,24 +93,23 @@ files modified by hand or kept for reference.
 As mentioned earlier, the essence of _reproducible analysis_ involves
 being able to reproduce project outputs with the same inputs. To ensure
 outputs are produced by a new analysis, it is recommended to delete
-existing outputs before recreating them. The clean_before_new_analysis
+existing outputs before recreating them. The `clean_before_new_analysis`
 section specifies the directories deleted before a new analysis. The
-make_structure() function updates the .gitignore file to exclude these
+`make_structure()` function updates the .gitignore file to exclude these
 directories from git version control.
 
-WARNING: The clean_structure() function will delete directories listed
-under the clean_before_new_analysis entry.
+**WARNING**: The `clean_structure()` function will delete all directories listed
+under the `clean_before_new_analysis` entry.
 
 ### Section defaultdb:
 
 This section defines the arguments needed to create a connection with a
-database using the DBI system. Multiple connections can be defined under
+database using the `DBI` system. Multiple connections can be defined under
 new entries. The `get_con()` function establishes a connection based on
-the information in the config.yml file. Refer to the [Database
-configuration]
-(<https://johnaponte.github.io/repana/articles/database.html> for more
-information) Vignette for detailed instructions on setting up and using
-the connection.
+the information in the config.yml file. Refer to the 
+[Database configuration](<https://johnaponte.github.io/repana/articles/database.html>) 
+Vignette for detailed instructions on setting up and using
+database connections.
 
 ### Section template:
 
@@ -138,13 +137,13 @@ fill in the URL link of the project and the location
 
 Your new project is ready.
 
-  6. Share the config.yml file to your collaborators so they can adapt to their
-  local conditions of the project. The config.yml is included in .gitignore and
+  6. Share the config.yml file to your collaborators so they can adapt to 
+  local conditions. The config.yml is included in .gitignore and
   not uploaded to GitHub to allow each collaborator to have its own definition.
 
-*WARNING* by default, the `_data` directory is not include in the .gitignore file. 
+**WARNING** by default, the `_data` directory is not include in the .gitignore file. 
 Consider to include it if the `_data` directory contains sensitive 
-information that should not be uploaded to GitHub. This directory may be 
+information that should not be uploaded to GitHub. This directory could be 
 shared between collaborators using a different method.
 
 For more information, see the 
