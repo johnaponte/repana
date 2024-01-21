@@ -1,0 +1,21 @@
+---
+title: "Database configuration"
+output: rmarkdown::html_vignette
+author: "John J Aponte"
+date:  2024-01-21
+vignette: >
+  %\VignetteIndexEntry{Database configuration}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(repana)
+```

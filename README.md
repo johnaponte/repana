@@ -42,7 +42,7 @@ To get started with Repana, follow these steps:
 
 For more information see:
 
-- [Defining the structure](articles/structure.html)
-- Database configuration
-- Modifying the template
-- Creating reports
+- [Defining the structure](https://johnaponte.github.io/repana/articles/structure.html)
+- [Database configuration](https://johnaponte.github.io/repana/articles/database.html)
+- [Modifying the template](https://johnaponte.github.io/repana/articles/template.html)
+- [Creating reports](https://johnaponte.github.io/repana/articles/reports.html)

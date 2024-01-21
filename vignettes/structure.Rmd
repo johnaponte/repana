@@ -1,6 +1,8 @@
 ---
 title: "Repana Structure"
 output: rmarkdown::html_vignette
+author: "John J Aponte"
+date:  2024-01-21
 vignette: >
   %\VignetteIndexEntry{Repana Structure}
   %\VignetteEngine{knitr::rmarkdown}

@@ -2,6 +2,7 @@
 % Please edit documentation in R/repana-package.R
 \docType{package}
 \name{repana}
+\alias{repana-package}
 \alias{repana}
 \title{repana}
 \description{
@@ -12,4 +13,16 @@ Set of utilities to make easy the reproduction of analysis in R.
 It allow to make_structure, clean_structure, and run and log programs in a
 predefined order to allow secondary files, analysis and reports be constructed in
 and ordered form.
+}
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://github.com/johnaponte/repana}
+  \item \url{https://johnaponte.github.io/repana/}
+}
+
+}
+\author{
+\strong{Maintainer}: John J. Aponte \email{john.j.aponte@gmail.com} (\href{https://orcid.org/0000-0002-3014-3673}{ORCID})
+
 }

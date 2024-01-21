@@ -16,7 +16,7 @@ Description: Set of utilities to facilitate the reproduction of analysis in R.
  an ordered and reproducible form.
 License: GPL (>= 3)
 Encoding: UTF-8
-RoxygenNote: 7.2.3
+RoxygenNote: 7.3.0
 Depends:
     DBI (>= 1.0)
 Suggests:
