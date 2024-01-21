@@ -140,6 +140,10 @@ Your new project is ready.
   6. Share the config.yml file to your collaborators so they can adapt to 
   local conditions. The config.yml is included in .gitignore and
   not uploaded to GitHub to allow each collaborator to have its own definition.
+  
+  7. Update the project and create new programs (e.g. `01_xxx`, `02_xxx`, etc.)
+  
+  8. Run the project programs using `repana::master()`
 
 **WARNING** by default, the `_data` directory is not include in the .gitignore file. 
 Consider to include it if the `_data` directory contains sensitive 
