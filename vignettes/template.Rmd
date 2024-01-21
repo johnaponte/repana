@@ -16,6 +16,35 @@ knitr::opts_chunk$set(
 )
 ```
 
-```{r setup}
-library(repana)
+
+Repana package install in the RStudio IDE an addins that allow the user to
+insert a header template for documentation. For this purpouse, create a new R file, 
+and in the top of the file call the addins menu click on "Repana Insert Template"
+which include the following text:
+
 ```
+#' ---
+#' title:
+#' author:
+#' date: [INSERT DATE]
+#' sessioninfo: YES
+#' signature: YES
+#' ---
+```
+
+the user must complete title and author. The date is updated according to the
+system date. Other YAML entries can be included.
+
+The `sesioninfo: YES` will allow the inclusion of the system information and packages
+when the program is run with `repana::master()`
+
+Similarly, with `signature: YES` will include an SHA1 signature of the file executed 
+by `repana::master`
+
+If the user do not want this behavior may change the entries from YES to NO.
+
+The function `repana::`create_structure()` produce a default `_template.txt` file
+and the location is specified in the `template`entry of the `config.yml` file.
+The user can modify the file or point to a new one as needed.
+
+
