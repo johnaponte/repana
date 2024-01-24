@@ -50,7 +50,6 @@ default:
   defaultdb:
     package: duckdb
     dbconnect: duckdb
-    dbname: ":memory:"
     read_only: FALSE
   template:
     _template.txt
@@ -72,8 +71,8 @@ differ.
 By default, six directories are defined, each serving a specific
 purpose:
 
-| Entry.    | Purpouse                                                       |
-|---------------|---------------------------------------------------------|
+| Entry     | Purpose                                                        |
+|------ ----|----------------------------------------------------------------|
 | data      | Input data to the project                                      |
 | functions | Functions used in the project                                  |
 | handmade  | Files created not using programs in the project                |
@@ -122,7 +121,7 @@ on how to use and modify the template.
 
 ## Workflow
 
-A workflow using GitHub and repana in Rstudio would be
+A workflow using GitHub and repana in RStudio would be
 
   1. Create the project in GitHub
   
@@ -130,7 +129,7 @@ A workflow using GitHub and repana in Rstudio would be
   
   3. Copy the URL link of the project
   
-  4. In Rstudio, create a new project from "Version Control", Select Git and
+  4. In RStudio, create a new project from "Version Control", Select Git and
 fill in the URL link of the project and the location
 
   5. Once the project is created, run `repana::make_structure()` function

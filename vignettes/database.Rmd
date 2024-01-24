@@ -5,8 +5,11 @@ author: "John J Aponte"
 date:  2024-01-21
 vignette: >
   %\VignetteIndexEntry{Database configuration}
-  %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
+  %\VignetteEngine{knitr::rmarkdown}
+editor_options: 
+  markdown: 
+    wrap: 72
 ---
 
 ```{r, include = FALSE}
@@ -16,6 +19,64 @@ knitr::opts_chunk$set(
 )
 ```
 
-```{r setup}
-library(repana)
+Repana package offers a simple methodology to keep definition of
+database connection strings that works with a definition on the
+`config.yml` file and the use of the function `get_con()` to be use in a
+DBI compliant database.
+
+By default in `config.yml` offers an in-memory connection to a duckdb
+database with the following parameters:
+
+```         
+ defaultdb:
+    package: duckdb
+    dbconnect: duckdb
+    read_only : FALSE     
 ```
+
+The first element indicates the name of the package where the
+`dbconnect()` function is located, and the dbconnect indicates the name of
+the function used to get the connection. The rest of entries are
+parameters for the connection and they vary from database to database.
+
+If the user wants a more permanent database, should add the entry for the
+parameter dbdir as for example:
+
+```         
+ defaultdb:
+    package: duckdb
+    dbconnect: duckdb
+    read_only : FALSE 
+    dbdir: database\study.db
+```
+
+
+Example to get connection to a `RSQLite` database
+
+```         
+  defaultdb:
+    package: RSQLite
+    dbconnect: SQLite
+    dbname: database/results.db
+```
+
+Example to get a connection with a `RPostgres` database
+
+```         
+  defaultdb:
+    package: RPostgres
+    dbconnection: Postgres
+    dbname: database
+    host: localhost
+    port: 5432
+    user: username
+    password: password
+```
+
+By default, the `get_con()` function reads the entry in  `defaultdb` but this
+other entries can be specified with the parameter `configname` or even the file
+where the configuration is saved with the parameter `file` if other file rather 
+than the `config.yml` is used.
+
+
+

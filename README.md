@@ -1,6 +1,6 @@
-# Introduction to repana (Reproducble Analysis in R)
+# Introduction to repana (Reproducible Analysis in R)
 
-Reproducible research is a crucial aspect of the scientific process, especially in data science. It ensures that the same inputs, including data, libraries, and user programs, consistently produce the same results or artifacts. This not only enhances the credibility of research but also streamlines collaboration and makes it easier to verify and build upon previous work. There are several options in R to achieve reproducible research and repanafacilitates the pursuit of reproducible research.
+Reproducible research is a crucial aspect of the scientific process, especially in data science. It ensures that the same inputs, including data, libraries, and user programs, consistently produce the same results or artifacts. This not only enhances the credibility of research but also streamlines collaboration and makes it easier to verify and build upon previous work. There are several options in R to achieve reproducible research and repana facilitates the pursuit of reproducible research.
 
 ## What is Repana?
 
@@ -34,9 +34,9 @@ To get started with Repana, follow these steps:
 
 3. **Programming:** Write your R programs, ensuring that they follow the naming conventions (e.g., `00_xxx`, `01_xxx`, etc.). If using the RStudio IDE use the `Repana insert template` addin to include a consistent head documentation for your project. Options in the head template allows to include a timestamp and signature to the created document and the packages used in the execution of each program.
 
-4. **Artifact Management:** Ensure your first program include the  `clean_stucture()`function. By default, the make_structure() function creates one for you in the `00_clean.R`. The execution of `clean_structure` will re-create all the directories where dependencies are saved. This directories are defined in the `config.yml` file
+4. **Artifact Management:** Ensure your first program include the  `clean_stucture()`function. By default, the make_structure() function creates one for you in the `00_clean.R`. The execution of `clean_structure` will re-create all the directories where dependencies are saved. This directories are defined in the `config.yml` file.
 
-5. **Execute Programs:** Utilize the `master()` function to run your programs in the intended order, keeping your research consistent and reproducible. By default `master()` executes all programs in the default directory that follow the naming convention, but you may use the start and stop options to execute only a set of deve
+5. **Execute Programs:** Utilize the `master()` function to run your programs in the intended order, keeping your research consistent and reproducible. By default `master()` executes all programs in the default directory that follow the naming convention, but you may use the start and stop options to execute only a set.
 
 6. **Documentation and Collaboration:** Document your work using the provided templates and collaborate seamlessly with your team or the broader research community.
 

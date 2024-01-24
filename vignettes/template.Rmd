@@ -18,7 +18,7 @@ knitr::opts_chunk$set(
 
 
 Repana package install in the RStudio IDE an addins that allow the user to
-insert a header template for documentation. For this purpouse, create a new R file, 
+insert a header template for documentation. For this purpose, create a new R file, 
 and in the top of the file call the addins menu click on "Repana Insert Template"
 which include the following text:
 

@@ -57,7 +57,6 @@ make_structure <- function() {
       " defaultdb:\n",
       "   package: duckdb\n",
       "   dbconnect: duckdb\n",
-      '   dbdir: ":memory:"\n',
       '   read_only: FALSE\n',
       " template:\n",
       "   _template.txt\n",
