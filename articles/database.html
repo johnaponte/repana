@@ -86,9 +86,48 @@ Aponte</h4>
 
     
     
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/johnaponte/repana" class="external-link">repana</a></span><span class="op">)</span></span>
-<span><span class="co">#&gt; Loading required package: DBI</span></span></code></pre></div>
+<p>Repana package offers a simple methodology to keep definition of
+database connection strings that works with a definition on the
+<code>config.yml</code> file and the use of the function
+<code><a href="../reference/get_con.html">get_con()</a></code> to be use in a DBI compliant database.</p>
+<p>By default in <code>config.yml</code> offers an in-memory connection
+to a duckdb database with the following parameters:</p>
+<pre><code><span> <span class="va">defaultdb</span><span class="op">:</span></span>
+<span>    <span class="va">package</span><span class="op">:</span> <span class="va">duckdb</span></span>
+<span>    <span class="va">dbconnect</span><span class="op">:</span> <span class="va">duckdb</span></span>
+<span>    <span class="va">read_only</span> <span class="op">:</span> <span class="cn">FALSE</span>     </span></code></pre>
+<p>The first element indicates the name of the package where the
+<code>dbconnect()</code> function is located, and the dbconnect
+indicates the name of the function used to get the connection. The rest
+of entries are parameters for the connection and they vary from database
+to database.</p>
+<p>If the user wants a more permanent database, should add the entry for
+the parameter dbdir as for example:</p>
+<pre><code> defaultdb:
+    package: duckdb
+    dbconnect: duckdb
+    read_only : FALSE 
+    dbdir: database\study.db</code></pre>
+<p>Example to get connection to a <code>RSQLite</code> database</p>
+<pre><code><span>  <span class="va">defaultdb</span><span class="op">:</span></span>
+<span>    <span class="va">package</span><span class="op">:</span> <span class="va">RSQLite</span></span>
+<span>    <span class="va">dbconnect</span><span class="op">:</span> <span class="va">SQLite</span></span>
+<span>    <span class="va">dbname</span><span class="op">:</span> <span class="va">database</span><span class="op">/</span><span class="va">results.db</span></span></code></pre>
+<p>Example to get a connection with a <code>RPostgres</code>
+database</p>
+<pre><code><span>  <span class="va">defaultdb</span><span class="op">:</span></span>
+<span>    <span class="va">package</span><span class="op">:</span> <span class="va">RPostgres</span></span>
+<span>    <span class="va">dbconnection</span><span class="op">:</span> <span class="va">Postgres</span></span>
+<span>    <span class="va">dbname</span><span class="op">:</span> <span class="va">database</span></span>
+<span>    <span class="va">host</span><span class="op">:</span> <span class="va">localhost</span></span>
+<span>    <span class="va">port</span><span class="op">:</span> <span class="fl">5432</span></span>
+<span>    <span class="va">user</span><span class="op">:</span> <span class="va">username</span></span>
+<span>    <span class="va">password</span><span class="op">:</span> <span class="va">password</span></span></code></pre>
+<p>By default, the <code><a href="../reference/get_con.html">get_con()</a></code> function reads the entry in
+<code>defaultdb</code> but this other entries can be specified with the
+parameter <code>configname</code> or even the file where the
+configuration is saved with the parameter <code>file</code> if other
+file rather than the <code>config.yml</code> is used.</p>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside>
 </div>

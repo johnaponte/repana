@@ -118,7 +118,6 @@ with predefined items for the Repana package.</p>
   defaultdb:
     package: duckdb
     dbconnect: duckdb
-    dbname: ":memory:"
     read_only: FALSE
   template:
     _template.txt</code></pre>
@@ -137,43 +136,14 @@ same programs without modification, even if the physical locations
 differ.</p>
 <p>By default, six directories are defined, each serving a specific
 purpose:</p>
-<table class="table">
-<caption>Directories defined in config.yml</caption>
-<colgroup>
-<col width="20%">
-<col width="79%">
-</colgroup>
-<thead><tr class="header">
-<th>Entry.</th>
-<th>Purpouse</th>
-</tr></thead>
-<tbody>
-<tr class="odd">
-<td>data</td>
-<td>Input data to the project</td>
-</tr>
-<tr class="even">
-<td>functions</td>
-<td>Functions used in the project</td>
-</tr>
-<tr class="odd">
-<td>handmade</td>
-<td>Files created not using programs in the project</td>
-</tr>
-<tr class="even">
-<td>database</td>
-<td>Database and other secondary files created by the project</td>
-</tr>
-<tr class="odd">
-<td>reports</td>
-<td>Reports, graphs, files and other output created by the project</td>
-</tr>
-<tr class="even">
-<td>logs</td>
-<td>Log of executed files</td>
-</tr>
-</tbody>
-</table>
+<div class="line-block">Entry | Purpose |</div>
+<p>|—— —-|—————————————————————-| | data | Input data to the project | |
+functions | Functions used in the project | | handmade | Files created
+not using programs in the project | | database | Database and other
+secondary files created by the project | | reports | Reports, graphs,
+files and other output created by the project | | logs | Log of executed
+files |</p>
+<p>: Directories defined in config.yml</p>
 <p>Note: The handmade directory is crucial for maintaining the spirit of
 <em>reproducible analysis</em>. While all project output should ideally
 stem from program actions on inputs, the handmade directory serves as a
@@ -219,12 +189,12 @@ the template</a> on how to use and modify the template.</p>
 <div class="section level2">
 <h2 id="workflow">Workflow<a class="anchor" aria-label="anchor" href="#workflow"></a>
 </h2>
-<p>A workflow using GitHub and repana in Rstudio would be</p>
+<p>A workflow using GitHub and repana in RStudio would be</p>
 <ol style="list-style-type: decimal">
 <li><p>Create the project in GitHub</p></li>
 <li><p>Update the README.md file</p></li>
 <li><p>Copy the URL link of the project</p></li>
-<li><p>In Rstudio, create a new project from “Version Control”, Select
+<li><p>In RStudio, create a new project from “Version Control”, Select
 Git and fill in the URL link of the project and the location</p></li>
 <li><p>Once the project is created, run
 <code><a href="../reference/make_structure.html">repana::make_structure()</a></code> function</p></li>
