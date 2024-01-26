@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">repana</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.0.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.1.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -53,135 +53,7 @@
       <small>Source: <a href="https://github.com/johnaponte/repana/blob/HEAD/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
     </div>
 
-    <div class="section level2">
-<h2 class="pkg-version" data-toc-text="2.0.0" id="repana-200">repana 2.0.0<a class="anchor" aria-label="anchor" href="#repana-200"></a></h2>
-<ul><li><p>Modified format of <code>NEWS.md</code> file to track changes to the package.</p></li>
-<li><p>Modify the documentation at package level as requested by CRAN</p></li>
-<li><p>Allow to change the template file for a project</p></li>
-<li><p>Simplify the template file</p></li>
-<li><p>pkgdown is used to create a website for the package in github</p></li>
-<li><p>Change the way timestamp is manage. It does not need anymore to include the start and end within the program.</p></li>
-<li><p>Custom YAML tags now control if session info and signature are injected to the code</p></li>
-<li><p>Master now works by default with the spin option. User format txt option for only txt output</p></li>
-<li><p>Make structure now produce 00_clean.R instead of 01_clean.R</p></li>
-<li><p>Simplified pattern manager for programs. Now all programs with format nn_ are included by default in the list of programs executed by master</p></li>
-<li><p>Default db changed from SQLite to duckdb as duckdb have similar functionality, but is more R friendly and preserver factors and dates (see <a href="https://duckdb.org/" class="external-link uri">https://duckdb.org/</a>)</p></li>
-</ul></div>
-    <div class="section level2">
-<h2 class="pkg-version" data-toc-text="1.23.2" id="repana-1232">repana 1.23.2<a class="anchor" aria-label="anchor" href="#repana-1232"></a></h2><p class="text-muted">CRAN release: 2021-09-20</p>
-<ul><li>Fix a bug if an output_file is included as parameter in the render_function</li>
-</ul></div>
-    <div class="section level2">
-<h2 class="pkg-version" data-toc-text="1.23.1" id="repana-1231">repana 1.23.1<a class="anchor" aria-label="anchor" href="#repana-1231"></a></h2><p class="text-muted">CRAN release: 2021-05-18</p>
-<ul><li><p>Remove unused dependencies. Check that report is render only if pandoc is available. Test for render reports only if pandoc is available</p></li>
-<li><p>Fix the problem of creating repeated *.Rproj in the .gitignore file</p></li>
-</ul><p>#repana 1.23.0</p>
-<ul><li><p>The confirm_libraries function has been removed. It was not really useful and potentially would not work well if many libraries are installed in the system.</p></li>
-<li><p>Messages on the make_structure are now messages and not calls to cat() function.</p></li>
-</ul></div>
-    <div class="section level2">
-<h2 class="pkg-version" data-toc-text="1.22.0" id="repana-1220">repana 1.22.0<a class="anchor" aria-label="anchor" href="#repana-1220"></a></h2>
-<ul><li><p>Modification of the version to have three numbers, change author address to submit to CRAN.</p></li>
-<li><p>Modify license.</p></li>
-<li><p>Modify render_report to not delete the output file if the output directory is the same as the directory of the input file.</p></li>
-</ul></div>
-    <div class="section level2">
-<h2 class="pkg-version" data-toc-text="1.21" id="repana-121">repana 1.21<a class="anchor" aria-label="anchor" href="#repana-121"></a></h2>
-<ul><li>Small correction in the template</li>
-</ul></div>
-    <div class="section level2">
-<h2 class="pkg-version" data-toc-text="1.20" id="repana-120">repana 1.20<a class="anchor" aria-label="anchor" href="#repana-120"></a></h2>
-<ul><li><p>Modify templates. Now only 1 exists which is more friendly for pdf and html render and improve the search of Rscript to be windows friendly.</p></li>
-<li><p>DBI is declared as dependent and therefore it is loaded automatically with the package.</p></li>
-<li><p>Master spin is now by default html but a new parameters allow to select the type of render.</p></li>
-<li><p>Name of reports from rcode is now uniformly called spin instead of SPIN</p></li>
-</ul></div>
-    <div class="section level2">
-<h2 class="pkg-version" data-toc-text="1.19" id="repana-119">repana 1.19<a class="anchor" aria-label="anchor" href="#repana-119"></a></h2>
-<ul><li>Modify opening template to have plyr before dplyr and load tidyverse</li>
-</ul></div>
-    <div class="section level2">
-<h2 class="pkg-version" data-toc-text="1.18" id="repana-118">repana 1.18<a class="anchor" aria-label="anchor" href="#repana-118"></a></h2>
-<ul><li>Modify the templates to have one for the heading and one for the closing part of a SPIN</li>
-</ul></div>
-    <div class="section level2">
-<h2 class="pkg-version" data-toc-text="1.17" id="repana-117">repana 1.17<a class="anchor" aria-label="anchor" href="#repana-117"></a></h2>
-<ul><li>a master_spin function to run the code as SPINs</li>
-</ul></div>
-    <div class="section level2">
-<h2 class="pkg-version" data-toc-text="1.16" id="repana-116">repana 1.16<a class="anchor" aria-label="anchor" href="#repana-116"></a></h2>
-<ul><li>New RStudio addin to insert a Template documentation for a SPIN program</li>
-</ul></div>
-    <div class="section level2">
-<h2 class="pkg-version" data-toc-text="1.15" id="repana-115">repana 1.15<a class="anchor" aria-label="anchor" href="#repana-115"></a></h2>
-<ul><li>Include a function to wrap the render of rmarkdown documents within a program</li>
-</ul></div>
-    <div class="section level2">
-<h2 class="pkg-version" data-toc-text="1.14" id="repana-114">repana 1.14<a class="anchor" aria-label="anchor" href="#repana-114"></a></h2>
-<ul><li>Include a wrap to writeDataTable. Change as.character to deparse to find the name of the data.frame in update_table.</li>
-</ul></div>
-    <div class="section level2">
-<h2 class="pkg-version" data-toc-text="1.12" id="repana-112">repana 1.12<a class="anchor" aria-label="anchor" href="#repana-112"></a></h2>
-<ul><li>Fix tests for the make_structure now creates 01_clean.R file</li>
-</ul></div>
-    <div class="section level2">
-<h2 class="pkg-version" data-toc-text="1.11" id="repana-111">repana 1.11<a class="anchor" aria-label="anchor" href="#repana-111"></a></h2>
-<ul><li>Include the get_dirs() function</li>
-</ul></div>
-    <div class="section level2">
-<h2 class="pkg-version" data-toc-text="1.10" id="repana-110">repana 1.10<a class="anchor" aria-label="anchor" href="#repana-110"></a></h2>
-<ul><li>update table now accept an argument for the name of the table</li>
-</ul></div>
-    <div class="section level2">
-<h2 class="pkg-version" data-toc-text="1.9" id="repana-19">repana 1.9<a class="anchor" aria-label="anchor" href="#repana-19"></a></h2>
-<p>*Fix get_con to use a different config.yml if needed</p>
-</div>
-    <div class="section level2">
-<h2 class="pkg-version" data-toc-text="1.8" id="version-18">Version 1.8<a class="anchor" aria-label="anchor" href="#version-18"></a></h2>
-<ul><li>Include pool connections and update vignette and documentation</li>
-</ul></div>
-    <div class="section level2">
-<h2 class="pkg-version" data-toc-text="1.7" id="version-17">Version 1.7<a class="anchor" aria-label="anchor" href="#version-17"></a></h2>
-<ul><li><p>change the gitignore entry in config.yml to clean_before_new_analysis which is more explanatory for non git users.</p></li>
-<li><p>This entry is not back compatible any more with the previous config.yml</p></li>
-<li><p>The way to specify the database also changes. Now config.yml configure a RSQLite in-memory database. This is also not back compatible with previous config.yml</p></li>
-</ul></div>
-    <div class="section level2">
-<h2 class="pkg-version" data-toc-text="1.6" id="version-16">Version 1.6<a class="anchor" aria-label="anchor" href="#version-16"></a></h2>
-<ul><li>Change the way to define the gitignore, as a list instead of an expression</li>
-</ul></div>
-    <div class="section level2">
-<h2 class="pkg-version" data-toc-text="1.5" id="version-15">Version 1.5<a class="anchor" aria-label="anchor" href="#version-15"></a></h2>
-<ul><li>Fix the duplication of entries in gitignore</li>
-</ul></div>
-    <div class="section level2">
-<h2 class="pkg-version" data-toc-text="1.5" id="version-15-1">Version 1.5<a class="anchor" aria-label="anchor" href="#version-15-1"></a></h2>
-<ul><li><p>gitignore is now processed based on the names of gitignore entry of the config.yml. Previously was a fixed set of directories</p></li>
-<li><p>make_structure create directories and subdirectories</p></li>
-</ul></div>
-    <div class="section level2">
-<h2 class="pkg-version" data-toc-text="1.4" id="version-14">Version 1.4*<a class="anchor" aria-label="anchor" href="#version-14"></a></h2>
-<ul><li>New function confirm_libraries()</li>
-</ul></div>
-    <div class="section level2">
-<h2 class="pkg-version" data-toc-text="1.3" id="version-13">Version 1.3<a class="anchor" aria-label="anchor" href="#version-13"></a></h2>
-<ul><li><p>Include config.yml in .gitignore</p></li>
-<li><p>Change the NEWS to NEWS.md</p></li>
-</ul></div>
-    <div class="section level2">
-<h2 class="pkg-version" data-toc-text="1.2" id="version-12">Version 1.2<a class="anchor" aria-label="anchor" href="#version-12"></a></h2>
-<p>*Improve seeking of Rscript package. Works for Linux and OS</p>
-</div>
-    <div class="section level2">
-<h2 class="pkg-version" data-toc-text="1.1" id="version-11">Version 1.1<a class="anchor" aria-label="anchor" href="#version-11"></a></h2>
-<p>*Include parameter stop to master function</p>
-</div>
-    <div class="section level2">
-<h2 class="pkg-version" data-toc-text="1.0" id="version-10">Version 1.0<a class="anchor" aria-label="anchor" href="#version-10"></a></h2>
-<ul><li>Package ready for deployment</li>
-</ul></div>
-  </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
-    </nav></aside></div>
+  </main></div>
 
 
     <footer><div class="pkgdown-footer-left">
