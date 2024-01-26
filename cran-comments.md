@@ -1,4 +1,15 @@
-## Vresion 2.0.0
+## Version 2.1.0
+
+Complete missing vignette.
+## R CMD check results 
+Duration: 37.6s
+
+0 errors ✔ | 0 warnings ✔ | 0 notes ✔
+
+R CMD check succeeded
+
+
+## Version 2.0.0
 
 ## R CMD Check results
 
