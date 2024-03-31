@@ -1,0 +1,13 @@
+pandoc: 3.1.11
+pkgdown: 2.0.7
+pkgdown_sha: ~
+articles:
+  database: database.html
+  reports: reports.html
+  structure: structure.html
+  template: template.html
+last_built: 2024-03-31T15:08Z
+urls:
+  reference: https://johnaponte.github.io/repana/reference
+  article: https://johnaponte.github.io/repana/articles
+
