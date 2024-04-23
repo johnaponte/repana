@@ -17,6 +17,7 @@ tablestyle
 wb
 writeDataTable
 rmarkdown
+dat
 tableStyle
 RStudio
 addin
