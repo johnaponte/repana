@@ -45,8 +45,7 @@ targets_structure <- function() {
   }
   if (!file.exists("config.yml")) {
     cat(
-'
-default:
+'default:
   dirs:
     outdir: out
   clean_before_new_analysis:
@@ -55,7 +54,6 @@ default:
     _template.txt
 ', file = "config.yml")
     message("File config.txt created")
-    message("File _template.txt created")
   }
   if (!file.exists("_template.txt")) {
     cat("#' ---\n#' title:\n#' author:\n#' date: [INSERT DATE]\n#' ---\n",
