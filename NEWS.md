@@ -3,7 +3,9 @@
 ## repana 2.2.0
 Add a `targets_structure` function to use the targets system instead
  of the default used by repana.
- 
+
+Add a logo!. Repana package has now a logo
+
 ## repana 2.1.0
 
 * Complete vignette to render reports
