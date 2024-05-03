@@ -1,0 +1,58 @@
+---
+title: "Integration with Targets"
+output: rmarkdown::html_vignette
+author: "John J Aponte"
+date:  2024-05-03
+vignette: >
+  %\VignetteIndexEntry{Integration with Targets}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+## Introduction
+
+The `repana` package enhances the setup and management of analysis environments, particularly integrating with `targets`, a pipeline tool for computationally demanding projects. This vignette outlines how to use `repana` in conjunction with `targets` to streamline your workflows.
+
+## Setting up `targets` with `repana`
+
+`repana` includes the function `targets_structure()`, which prepares a directory layout compatible with `targets`:
+
+-   **R/** Directory for function source files.
+-   **dat/** Directory to keep source data used in the project
+-   **rmd/** Directory for R Markdown report files.
+-   **out/** Directory to store output or shared artifacts
+-   **\_targets.R** Skeleton to define targets
+-   **\_template_txt** Documentation skeleton
+-   **config.yml** To handle directories and templates
+
+The **.gitignore** file is update (or created if missing) to exclude from the Git repository the **dat/**, **out/** and **\_targets** directories.
+
+```{r folder-structure, echo=TRUE, eval=FALSE}
+targets_structure()
+```
+
+## Managing Project Artifacts
+
+To manage project artifacts efficiently, `repana` provides utilities to clear previous results and reset the analysis environment:
+
+-   **`tar_destroy()`** from `targets` deletes all existing artifacts, clearing the project's state.
+-   **`clean_structure()`** from `repana` cleans up all output directories, ensuring no residual files interfere with new runs.
+
+```{r cleanup, echo=TRUE, eval = FALSE}
+tar_destroy()
+clean_structure()
+```
+
+## Running the Analysis
+
+Once the environment is set up and cleaned, you can run the analysis using:
+
+```{r run-analysis, echo=TRUE, eval = FALSE}
+tar_make()
+```
+
+`tar_make()` executes the analysis pipeline, processing only the necessary components that have changed or are not up to date. This ensures your analyses are both fast and reliable.
+
+## Conclusion
+
+Integrating `repana` with `targets` not only simplifies the setup and management of your projects but also enhances the efficiency and reliability of your workflows. By organizing project elements into a structured directory layout and providing tools for managing artifacts, `repana` ensures that your analyses are robust and your results are trustworthy.

@@ -48,3 +48,4 @@ For more information see:
 - [Database configuration](https://johnaponte.github.io/repana/articles/database.html)
 - [Modifying the template](https://johnaponte.github.io/repana/articles/template.html)
 - [Creating reports](https://johnaponte.github.io/repana/articles/reports.html)
+- [Integration with targets](https://johnaponte.github.io/repana/articles/targets.html)

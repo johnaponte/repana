@@ -24,6 +24,10 @@ targets_structure <- function() {
     dir.create("R")
     message("Directory R created")
   }
+  if (!dir.exists("rmd")) {
+    dir.create("rmd")
+    message("Directory rmd created")
+  }
   if (!dir.exists("dat")) {
     dir.create("dat")
     message("Directory dat created")
@@ -63,7 +67,7 @@ targets_structure <- function() {
   if (!file.exists("_targets.R")) {
     cat(
       '
-# Created by epana_targets().
+# Created by repana_targets().
 # This is a simplified version. See details of targets on:
 # https://books.ropensci.org/targets/walkthrough.html#inspect-the-pipeline
 
@@ -73,8 +77,11 @@ library(tarchetypes)
 
 # Set target options:
 tar_option_set(
+  # For reproducible results uncomment and update seed
+  # tar_option_set(seed = 12345),
+
   # Packages need for the targets
-  packages = c("tibble")
+  # packages = c("tidyverse")
 
   # Add other options
 )

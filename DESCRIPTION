@@ -26,7 +26,8 @@ Suggests:
     RSQLite,
     RPostgres,
     duckdb,
-    pacman
+    pacman,
+    targets
 Imports: 
     config,
     dplyr,

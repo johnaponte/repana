@@ -6,6 +6,8 @@
 \alias{repana-package}
 \title{repana: Repeatable Analysis in R}
 \description{
+\if{html}{\figure{logo.png}{options: style='float: right' alt='logo' width='120'}}
+
 Set of utilities to facilitate the reproduction of analysis in R. It allow to make_structure(), clean_structure(), and run and log programs in a predefined order to allow secondary files, analysis and reports be constructed in an ordered and reproducible form.
 }
 \seealso{
