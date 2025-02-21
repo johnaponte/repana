@@ -1,84 +1,30 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://johnaponte.github.io/repana/404.html</loc>
-  </url>
-  <url>
-    <loc>https://johnaponte.github.io/repana/LICENSE.html</loc>
-  </url>
-  <url>
-    <loc>https://johnaponte.github.io/repana/articles/database.html</loc>
-  </url>
-  <url>
-    <loc>https://johnaponte.github.io/repana/articles/index.html</loc>
-  </url>
-  <url>
-    <loc>https://johnaponte.github.io/repana/articles/reports.html</loc>
-  </url>
-  <url>
-    <loc>https://johnaponte.github.io/repana/articles/structure.html</loc>
-  </url>
-  <url>
-    <loc>https://johnaponte.github.io/repana/articles/targets.html</loc>
-  </url>
-  <url>
-    <loc>https://johnaponte.github.io/repana/articles/template.html</loc>
-  </url>
-  <url>
-    <loc>https://johnaponte.github.io/repana/authors.html</loc>
-  </url>
-  <url>
-    <loc>https://johnaponte.github.io/repana/index.html</loc>
-  </url>
-  <url>
-    <loc>https://johnaponte.github.io/repana/news/index.html</loc>
-  </url>
-  <url>
-    <loc>https://johnaponte.github.io/repana/reference/addDataTable.html</loc>
-  </url>
-  <url>
-    <loc>https://johnaponte.github.io/repana/reference/clean_database.html</loc>
-  </url>
-  <url>
-    <loc>https://johnaponte.github.io/repana/reference/clean_structure.html</loc>
-  </url>
-  <url>
-    <loc>https://johnaponte.github.io/repana/reference/get_con.html</loc>
-  </url>
-  <url>
-    <loc>https://johnaponte.github.io/repana/reference/get_dirs.html</loc>
-  </url>
-  <url>
-    <loc>https://johnaponte.github.io/repana/reference/get_pool.html</loc>
-  </url>
-  <url>
-    <loc>https://johnaponte.github.io/repana/reference/index.html</loc>
-  </url>
-  <url>
-    <loc>https://johnaponte.github.io/repana/reference/insert_template.html</loc>
-  </url>
-  <url>
-    <loc>https://johnaponte.github.io/repana/reference/make_structure.html</loc>
-  </url>
-  <url>
-    <loc>https://johnaponte.github.io/repana/reference/master.html</loc>
-  </url>
-  <url>
-    <loc>https://johnaponte.github.io/repana/reference/master_txt.html</loc>
-  </url>
-  <url>
-    <loc>https://johnaponte.github.io/repana/reference/render_report.html</loc>
-  </url>
-  <url>
-    <loc>https://johnaponte.github.io/repana/reference/repana-package.html</loc>
-  </url>
-  <url>
-    <loc>https://johnaponte.github.io/repana/reference/targets_structure.html</loc>
-  </url>
-  <url>
-    <loc>https://johnaponte.github.io/repana/reference/update_table.html</loc>
-  </url>
-  <url>
-    <loc>https://johnaponte.github.io/repana/reference/write_log.html</loc>
-  </url>
+<urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
+<url><loc>https://johnaponte.github.io/repana/404.html</loc></url>
+<url><loc>https://johnaponte.github.io/repana/LICENSE.html</loc></url>
+<url><loc>https://johnaponte.github.io/repana/articles/database.html</loc></url>
+<url><loc>https://johnaponte.github.io/repana/articles/index.html</loc></url>
+<url><loc>https://johnaponte.github.io/repana/articles/reports.html</loc></url>
+<url><loc>https://johnaponte.github.io/repana/articles/structure.html</loc></url>
+<url><loc>https://johnaponte.github.io/repana/articles/targets.html</loc></url>
+<url><loc>https://johnaponte.github.io/repana/articles/template.html</loc></url>
+<url><loc>https://johnaponte.github.io/repana/authors.html</loc></url>
+<url><loc>https://johnaponte.github.io/repana/index.html</loc></url>
+<url><loc>https://johnaponte.github.io/repana/news/index.html</loc></url>
+<url><loc>https://johnaponte.github.io/repana/reference/addDataTable.html</loc></url>
+<url><loc>https://johnaponte.github.io/repana/reference/clean_database.html</loc></url>
+<url><loc>https://johnaponte.github.io/repana/reference/clean_structure.html</loc></url>
+<url><loc>https://johnaponte.github.io/repana/reference/get_con.html</loc></url>
+<url><loc>https://johnaponte.github.io/repana/reference/get_dirs.html</loc></url>
+<url><loc>https://johnaponte.github.io/repana/reference/get_pool.html</loc></url>
+<url><loc>https://johnaponte.github.io/repana/reference/index.html</loc></url>
+<url><loc>https://johnaponte.github.io/repana/reference/insert_template.html</loc></url>
+<url><loc>https://johnaponte.github.io/repana/reference/make_structure.html</loc></url>
+<url><loc>https://johnaponte.github.io/repana/reference/master.html</loc></url>
+<url><loc>https://johnaponte.github.io/repana/reference/master_txt.html</loc></url>
+<url><loc>https://johnaponte.github.io/repana/reference/render_report.html</loc></url>
+<url><loc>https://johnaponte.github.io/repana/reference/repana-package.html</loc></url>
+<url><loc>https://johnaponte.github.io/repana/reference/targets_structure.html</loc></url>
+<url><loc>https://johnaponte.github.io/repana/reference/update_table.html</loc></url>
+<url><loc>https://johnaponte.github.io/repana/reference/write_log.html</loc></url>
 </urlset>
+
