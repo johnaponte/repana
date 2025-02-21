@@ -1,7 +1,7 @@
 Package: repana
 Type: Package
 Title: Repeatable Analysis in R
-Version: 2.2.0.9000
+Version: 2.2.1
 Authors@R: person(
             given = "John J.",
             family = "Aponte",
@@ -44,3 +44,4 @@ Imports:
 Language: en-US
 VignetteBuilder: knitr
 Roxygen: list(markdown = TRUE)
+BugReports: https://github.com/johnaponte/repana/issues

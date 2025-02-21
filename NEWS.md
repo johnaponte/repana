@@ -1,6 +1,11 @@
-# repana (development version)
+# repana 2.2.1
 
 # NEWS repana
+
+## repana 2.2.1
+Production of PDF using the `master` could fail in some systems. The test
+of master with PDFs is removed. Producing HTML is more consistent and it is
+the recommended way to use `master`
 
 ## repana 2.2.0
 Add a `targets_structure` function to use the targets system instead
