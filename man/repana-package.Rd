@@ -15,6 +15,7 @@ Useful links:
 \itemize{
   \item \url{https://github.com/johnaponte/repana}
   \item \url{https://johnaponte.github.io/repana/}
+  \item Report bugs at \url{https://github.com/johnaponte/repana/issues}
 }
 
 }

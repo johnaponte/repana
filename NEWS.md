@@ -1,6 +1,4 @@
-# repana 2.2.1
-
-# NEWS repana
+# NEWS repana 2.2.1
 
 ## repana 2.2.1
 Production of PDF using the `master` could fail in some systems. The test
